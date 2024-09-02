@@ -1,4 +1,4 @@
-import { Inter } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.css";
 import UIProvider from "@/components/NextUIProvider";
 import React from "react";
@@ -7,7 +7,7 @@ const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
   : "http://localhost:3000";
 
-const inter = Inter({ subsets: ["latin"] });
+const poppins = Poppins({ subsets: ["latin"], weight: ["400"] });
 
 export const metadata = {
   metadataBase: new URL(defaultUrl),
@@ -17,7 +17,7 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={inter.className}>
+    <html lang="en" className={poppins.className}>
       <body className="bg-background text-foreground">
         <UIProvider>
           <main className="flex min-h-screen flex-col items-center">{children}</main>
