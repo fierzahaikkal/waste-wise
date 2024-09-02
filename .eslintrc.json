@@ -1,0 +1,100 @@
+{
+  "globals": {
+    "JSX": "readonly"
+  },
+  "root": true,
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "ignorePatterns": ["node_modules/*", ".next/*", ".out/*", "!.prettierrc.js", "nr.js"],
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    },
+    "import/resolver": {
+      "node": {
+        "extensions": [".ts", ".tsx"]
+      }
+    }
+  },
+  "plugins": ["@typescript-eslint/eslint-plugin"],
+  "extends": [
+    "next/core-web-vitals",
+    "airbnb",
+    "prettier",
+    "plugin:jsx-a11y/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended",
+    "plugin:react-hooks/recommended"
+  ],
+  "rules": {
+    "no-undef": "warn",
+    "react/jsx-curly-brace-presence": "off",
+    "react/function-component-definition": "off",
+    "jsx-a11y/label-has-associated-control": [
+      "error",
+      {
+        "required": {
+          "some": ["nesting", "id"]
+        }
+      }
+    ],
+    "import/order": "off",
+    "eslint global-require": "off",
+    "@next/next/no-img-element": "off",
+    "react/require-default-props": "off",
+    "react/prop-types": "off",
+    "no-restricted-exports": "off",
+    "no-shadow": "off",
+    "camelcase": "off",
+    "react/button-has-type": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/no-unescaped-entities": "off",
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [".ts", ".tsx", ".js", ".jsx"]
+      }
+    ],
+    "react/jsx-props-no-spreading": "off",
+    "sonarjs/cognitive-complexity": "off",
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
+    "jsx-a11y/anchor-is-valid": [
+      "error",
+      {
+        "components": ["Link"],
+        "specialLink": ["hrefLeft", "hrefRight"],
+        "aspects": ["invalidHref", "preferButton"]
+      }
+    ],
+    "no-nested-ternary": "off",
+    "radix": "off",
+    "react/jsx-key": "warn",
+    "import/prefer-default-export": "off",
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [],
+        "peerDependencies": true
+      }
+    ]
+  }
+}

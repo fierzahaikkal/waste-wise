@@ -1,10 +1,13 @@
-import { GeistSans } from "geist/font/sans";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import UIProvider from "@/components/NextUIProvider";
+import React from "react";
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
   : "http://localhost:3000";
+
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   metadataBase: new URL(defaultUrl),
@@ -12,18 +15,12 @@ export const metadata = {
   description: "The fastest way to build apps with Next.js and Supabase",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={GeistSans.className}>
+    <html lang="en" className={inter.className}>
       <body className="bg-background text-foreground">
         <UIProvider>
-          <main className="min-h-screen flex flex-col items-center">
-            {children}
-          </main>
+          <main className="flex min-h-screen flex-col items-center">{children}</main>
         </UIProvider>
       </body>
     </html>
