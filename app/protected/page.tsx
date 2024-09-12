@@ -1,12 +1,12 @@
 import DeployButton from "@/components/DeployButton";
-import AuthButton from "@/components/AuthButton";
-import { createClient } from "@/utils/supabase/server";
+import AuthButtonClient from "@/components/auth-button/auth-button.client";
+import { createSupabaseServerClient } from "@/utils/supabase/server";
 import FetchDataSteps from "@/components/tutorial/FetchDataSteps";
 import Header from "@/components/Header";
 import { redirect } from "next/navigation";
 
 export default async function ProtectedPage() {
-  const supabase = createClient();
+  const supabase = createSupabaseServerClient();
 
   const {
     data: { user },
@@ -25,7 +25,7 @@ export default async function ProtectedPage() {
         <nav className="flex h-16 w-full justify-center border-b border-b-foreground/10">
           <div className="flex w-full max-w-4xl items-center justify-between p-3 text-sm">
             <DeployButton />
-            <AuthButton />
+            <AuthButtonClient />
           </div>
         </nav>
       </div>

@@ -1,7 +1,8 @@
+import { getErrorMessage } from "@/utils/get-error-msg";
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 
-export const createClient = () => {
+export const createSupabaseServerClient = () => {
   const cookieStore = cookies();
 
   return createServerClient(
@@ -18,9 +19,8 @@ export const createClient = () => {
               cookieStore.set(name, value, options);
             });
           } catch (error) {
-            // The `set` method was called from a Server Component.
-            // This can be ignored if you have middleware refreshing
-            // user sessions.
+            const err = getErrorMessage(error);
+            console.error(err);
           }
         },
       },
