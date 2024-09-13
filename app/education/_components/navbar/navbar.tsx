@@ -1,15 +1,8 @@
-import { AuthButtonClient } from "@/components/auth-button";
+import AuthButtonClient from "@/components/auth-button/auth-button.client";
 import BrandLogo from "@/components/brand-logo";
-import Show from "@/components/elements/show";
 import { cn } from "@nextui-org/react";
-import React from "react";
 
-type Props = {
-  isSupabaseConnected: boolean;
-};
-
-const NavBar = (props: Props) => {
-  const { isSupabaseConnected } = props;
+const NavBarDesktop = () => {
   return (
     <section className="flex items-center justify-between p-12">
       <BrandLogo iconSize={56} textSize="5xl" className="text-white" />
@@ -25,11 +18,9 @@ const NavBar = (props: Props) => {
             About Us
           </li>
           <li>
-            <Show when={isSupabaseConnected}>
-              <div className={cn("flex items-center gap-2")}>
-                <AuthButtonClient isSecondary />
-              </div>
-            </Show>
+            <div className={cn("flex items-center gap-2")}>
+              <AuthButtonClient />
+            </div>
           </li>
         </ul>
       </nav>
@@ -37,4 +28,4 @@ const NavBar = (props: Props) => {
   );
 };
 
-export default NavBar;
+export default NavBarDesktop;

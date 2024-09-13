@@ -1,3 +1,4 @@
+/* eslint-disable react-server-components/use-client */
 import Show from "@/components/elements/show";
 import { createSupabaseServerClient } from "@/utils/supabase/server";
 import { Input } from "@nextui-org/input";

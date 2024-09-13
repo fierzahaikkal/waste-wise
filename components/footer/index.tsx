@@ -10,9 +10,14 @@ const Footer = () => {
   const mobile = useMediaQuery("(max-width: 768px)");
 
   return (
-    <Show when={mobile} fallback={<FooterDesktop />}>
-      <FooterMobile />
-    </Show>
+    <>
+      <Show when={mobile}>
+        <FooterMobile />
+      </Show>
+      <Show when={!mobile}>
+        <FooterDesktop />
+      </Show>
+    </>
   );
 };
 
