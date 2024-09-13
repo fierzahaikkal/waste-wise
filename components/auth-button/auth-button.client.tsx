@@ -6,6 +6,8 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { createSupabaseClient as supabaseClient } from "@/utils/supabase/client";
 import { cn } from "@nextui-org/react";
+import { getErrorMessage } from "@/utils/get-error-msg";
+import { toast } from "react-toastify";
 
 type Props = {
   isSecondary?: boolean;
@@ -26,11 +28,16 @@ export default function AuthButtonClient(props: Props) {
       setUser(user);
     };
     getUser();
-  }, [supabase]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const signOut = async () => {
-    await supabase.auth.signOut();
-    router.push("/login");
+    try {
+      await supabase.auth.signOut();
+      router.push("/login");
+    } catch (error) {
+      toast.error(getErrorMessage(error));
+    }
   };
 
   return user ? (

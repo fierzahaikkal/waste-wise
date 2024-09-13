@@ -1,3 +1,4 @@
+import { WasteCards } from "./bento-waste";
 import WasteTypeCard from "./card";
 
 const wasteTypes = [
@@ -32,6 +33,7 @@ const WasteTypes = () => {
           // eslint-disable-next-line react/no-array-index-key
           <WasteTypeCard key={index} src={type.src} alt={type.alt} desc={type.desc} />
         ))}
+        <WasteCards />
       </div>
     </section>
   );
