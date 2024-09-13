@@ -1,11 +1,10 @@
 import Footer from "@/components/footer";
-import Hero from "@/app/_components/hero";
-import Services from "@/app/_components/services";
 import Navbar from "@/components/navbar";
 import { getErrorMessage } from "@/utils/get-error-msg";
 import { createSupabaseServerClient } from "@/utils/supabase/server";
+import TeamSection from "./_team";
 
-export default async function Index() {
+export default async function TeamPage() {
   const canInitSupabaseClient = () => {
     // This function is just for the interactive tutorial.
     // Feel free to remove it once you have Supabase connected.
@@ -24,8 +23,7 @@ export default async function Index() {
   return (
     <section>
       <Navbar isSupabaseConnected={isSupabaseConnected} />
-      <Hero />
-      <Services />
+      <TeamSection />
       <Footer />
     </section>
   );

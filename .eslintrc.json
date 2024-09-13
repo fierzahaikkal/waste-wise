@@ -26,18 +26,17 @@
       }
     }
   },
-  "plugins": ["@typescript-eslint/eslint-plugin"],
+  "plugins": ["@typescript-eslint"],
   "extends": [
     "next/core-web-vitals",
+    "plugin:@typescript-eslint/recommended",
     "airbnb",
     "prettier",
     "plugin:jsx-a11y/recommended",
-    "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended",
     "plugin:react-hooks/recommended"
   ],
   "rules": {
-    "no-undef": "warn",
     "react/jsx-curly-brace-presence": "off",
     "react/function-component-definition": "off",
     "jsx-a11y/label-has-associated-control": [
@@ -56,9 +55,10 @@
     "no-restricted-exports": "off",
     "no-shadow": "off",
     "camelcase": "off",
+    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/no-explicit-any": "error",
     "react/button-has-type": "off",
     "react/react-in-jsx-scope": "off",
-    "react/no-unescaped-entities": "off",
     "react/jsx-filename-extension": [
       1,
       {
