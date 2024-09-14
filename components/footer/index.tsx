@@ -7,7 +7,7 @@ import FooterDesktop from "./footer-desktop";
 import Show from "@elements/show";
 
 const Footer = () => {
-  const mobile = useMediaQuery("(max-width: 768px)");
+  const mobile = useMediaQuery("(max-width: 1024px)");
 
   return (
     <>
