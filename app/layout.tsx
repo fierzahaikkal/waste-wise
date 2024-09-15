@@ -28,8 +28,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={poppins.className}>
       <body>
         <HydrationOverlay>
-          <AuthContextProvider>
-            <ReactQueryProvider>
+          <ReactQueryProvider>
+            <AuthContextProvider>
               <div id="nav-portal" />
               <div id="modal" />
               <UIProvider>
@@ -38,8 +38,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   <ToastContainer />
                 </main>
               </UIProvider>
-            </ReactQueryProvider>
-          </AuthContextProvider>
+            </AuthContextProvider>
+          </ReactQueryProvider>
         </HydrationOverlay>
       </body>
     </html>
