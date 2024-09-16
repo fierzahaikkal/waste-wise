@@ -1,6 +1,9 @@
 import Link from "next/link";
 import BrandLogo from "../brand-logo";
 import Socials from "./socials";
+import SubTitle from "@/app/_components/subtitle";
+import { Input } from "@nextui-org/input";
+import { Button } from "@nextui-org/button";
 
 const FooterDesktop = () => {
   return (
@@ -35,63 +38,25 @@ const FooterDesktop = () => {
         </div>
       </section>
       {/* mid */}
-      <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-        {/* Section 1 */}
-        <div>
-          <h3 className="mb-4 text-lg font-bold text-[#749567]">About Us</h3>
-          <p className="text-gray-400">
-            We are a dedicated team providing the best services in the industry. Join us on our
-            journey to make the world greener!
-          </p>
+      <div className="flex items-center justify-between">
+        <div className="space-y-4">
+          <SubTitle text="about us:" className="text-base font-medium" />
+          <article className="space-y-2 px-2">
+            <p className="capitalize">email: info@wastewise.com</p>
+            <p className="capitalize">phone: +62 888-888-888</p>
+            <p className="capitalize">address: 123 Main Street, Anytown USA 12345</p>
+          </article>
         </div>
-
-        {/* Section 2 */}
-        <div>
-          <h3 className="mb-4 text-lg font-bold text-[#749567]">Quick Links</h3>
-          <ul className="space-y-2">
-            <li>
-              <a href="/" className="hover:text-[#749567]">
-                Home
-              </a>
-            </li>
-            <li>
-              <a href="/" className="hover:text-[#749567]">
-                Services
-              </a>
-            </li>
-            <li>
-              <a href="/" className="hover:text-[#749567]">
-                Blog
-              </a>
-            </li>
-            <li>
-              <a href="/" className="hover:text-[#749567]">
-                Contact
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        {/* Section 3 */}
-        <div>
-          <h3 className="mb-4 text-lg font-bold text-[#749567]">Subscribe to Our Newsletter</h3>
-          <form className="space-y-4">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="w-full rounded-md bg-gray-800 p-3 text-white focus:outline-none focus:ring-2 focus:ring-[#749567]"
-            />
-            <button
-              type="submit"
-              className="w-full rounded-md bg-[#749567] px-4 py-2 text-white transition-all duration-300 hover:bg-[#567755]"
-            >
-              Subscribe
-            </button>
-          </form>
-        </div>
+        <form className="flex w-[30rem] items-center space-x-2 rounded-xl bg-[#292A32] px-10 py-16">
+          <Input size="lg" placeholder="Email" name="email" variant="bordered" />
+          <Button className="bg-highland-400 px-10 py-8 font-semibold capitalize">
+            Subcribe to news
+          </Button>
+        </form>
       </div>
-      <div className="mt-8 border-t border-gray-700 pt-6 text-center">
+      <div className="mt-8 flex items-center gap-x-4 border-t border-gray-300 pt-6">
         <p className="text-gray-400">© 2024 WasteWise. All rights reserved.</p>
+        <p className="text-gray-400">Privacy Policy</p>
       </div>
     </footer>
   );

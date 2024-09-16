@@ -1,4 +1,5 @@
 import { nextui } from "@nextui-org/react";
+import { table } from "console";
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
