@@ -1,10 +1,10 @@
 import { BentoGrid, BentoGridItem } from "@/components/bento-grid";
-import { Clipboard } from "lucide-react";
+import { CircleDollarSign, Users, Recycle, Trash, Atom } from "lucide-react";
 import React from "react";
 
 export function WasteCards() {
   return (
-    <BentoGrid className="mx-auto max-w-4xl md:auto-rows-[20rem]">
+    <BentoGrid className="mx-auto md:auto-rows-[20rem]">
       {/* eslint-disable-next-line no-use-before-define */}
       {items.map((item, i) => (
         <BentoGridItem
@@ -13,7 +13,7 @@ export function WasteCards() {
           title={item.title}
           description={item.description}
           header={item.header}
-          className={item.className}
+          className={`relative ${item.className}`}
           icon={item.icon}
         />
       ))}
@@ -25,31 +25,38 @@ const Skeleton = () => (
 );
 const items = [
   {
-    title: "The Dawn of Innovation",
+    title: "Earn Money",
     description: "Explore the birth of groundbreaking ideas and inventions.",
     header: <Skeleton />,
     className: "md:col-span-2",
-    icon: <Clipboard className="h-4 w-4 text-neutral-500" />,
+    icon: <CircleDollarSign className="h-4 w-4 text-neutral-500" />,
   },
   {
-    title: "The Digital Revolution",
+    title: "Supporting Community",
     description: "Dive into the transformative power of technology.",
     header: <Skeleton />,
-    className: "md:col-span-1",
-    icon: <Clipboard className="h-4 w-4 text-neutral-500" />,
+    className: "md:col-span-3",
+    icon: <Users className="h-4 w-4 text-neutral-500" />,
   },
   {
-    title: "The Art of Design",
+    title: "Contribute To Recycling Waste",
     description: "Discover the beauty of thoughtful and functional design.",
     header: <Skeleton />,
-    className: "md:col-span-1",
-    icon: <Clipboard className="h-4 w-4 text-neutral-500" />,
+    className: "md:col-span-3",
+    icon: <Recycle className="h-4 w-4 text-neutral-500" />,
   },
   {
-    title: "The Power of Communication",
+    title: "#WasteWise",
     description: "Understand the impact of effective communication in our lives.",
     header: <Skeleton />,
-    className: "md:col-span-2",
-    icon: <Clipboard className="h-4 w-4 text-neutral-500" />,
+    className: "md:col-span-2 md:row-span-2",
+    icon: <Trash className="h-4 w-4 text-neutral-500" />,
+  },
+  {
+    title: "Going To Zero Carbon Emission",
+    description: "Understand the impact of effective communication in our lives.",
+    header: <Skeleton />,
+    className: "md:col-span-3",
+    icon: <Atom className="h-4 w-4 text-neutral-500" />,
   },
 ];

@@ -5,14 +5,14 @@ import React from "react";
 const Socials = () => {
   return (
     <div className="flex items-center gap-4">
-      <Link href="/" className="grid place-items-center p-1">
-        <Linkedin color="white" />
+      <Link href="/" className="grid place-items-center rounded-full bg-white p-3 leading-none">
+        <Linkedin color="black" />
       </Link>
-      <Link href="/" className="grid place-items-center p-1">
-        <Twitter color="white" />
+      <Link href="/" className="grid place-items-center rounded-full bg-white p-3 leading-none">
+        <Twitter color="black" />
       </Link>
-      <Link href="/" className="grid place-items-center p-1">
-        <Instagram color="white" />
+      <Link href="/" className="grid place-items-center rounded-full bg-white p-3 leading-none">
+        <Instagram color="black" />
       </Link>
     </div>
   );
