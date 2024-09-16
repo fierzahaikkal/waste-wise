@@ -39,7 +39,7 @@ const FooterMobile = () => {
       </section>
       {/* mid */}
       <div className="flex flex-col items-center space-y-6">
-        <div className="space-y-4 text-center">
+        <div className="space-y-4">
           <SubTitle text="about us:" className="text-base font-medium" />
           <article className="space-y-2 px-2">
             <p className="capitalize">email: info@wastewise.com</p>
