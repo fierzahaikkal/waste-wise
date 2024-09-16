@@ -1,11 +1,11 @@
 import { AuthContextProvider } from "@/components/contexts/auth-context";
 import ReactQueryProvider from "@/components/contexts/react-query";
 import UIProvider from "@/components/NextUIProvider";
-import { HydrationOverlay } from "@builder.io/react-hydration-overlay";
 import { Poppins } from "next/font/google";
 import React from "react";
 import { ToastContainer } from "react-toastify";
 import "./globals.css";
+import { HydrationOverlay } from "@builder.io/react-hydration-overlay";
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`

@@ -1,6 +1,9 @@
 import EduHero from "./_components/hero";
-import Navbar from "./_components/navbar";
 import WasteTypes from "./_components/waste-types";
+import HowItWorks from "./_components/how-it-works";
+import { WasteCards } from "./_components/bento-waste";
+import Footer from "@/components/footer";
+import Navbar from "./_components/navbar";
 
 const EduPage = () => {
   return (
@@ -9,7 +12,12 @@ const EduPage = () => {
         <Navbar />
         <EduHero />
       </div>
-      <WasteTypes />
+      <div className="container mx-auto mb-[80px]">
+        <WasteTypes />
+        <HowItWorks />
+        <WasteCards />
+      </div>
+      <Footer />
     </section>
   );
 };

@@ -1,4 +1,3 @@
-import { WasteCards } from "./bento-waste";
 import WasteTypeCard from "./card";
 
 const wasteTypes = [
@@ -26,14 +25,16 @@ const wasteTypes = [
 
 const WasteTypes = () => {
   return (
-    <section className="container mx-auto my-20 rounded-xl bg-red-100 px-8 pb-8 pt-2 outline-dashed outline-highland-400">
-      <h3>Waste Types</h3>
+    <section className="my-20 rounded-xl px-8 pb-8 pt-2 outline-dashed outline-highland-400">
+      <div className="mb-6 mt-4">
+        <h2 className="text-3xl font-bold">Waste Types</h2>
+        <h2 className="font-regular text-2xl">Did you know every waste have their types?</h2>
+      </div>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         {wasteTypes.map((type, index) => (
           // eslint-disable-next-line react/no-array-index-key
           <WasteTypeCard key={index} src={type.src} alt={type.alt} desc={type.desc} />
         ))}
-        <WasteCards />
       </div>
     </section>
   );
