@@ -1,14 +1,15 @@
 import { Button } from "@nextui-org/button";
+import Image from "next/image";
 
 export default function Hero() {
   return (
     <div className="container mx-auto -mt-14 flex min-h-screen w-full flex-col items-center justify-center gap-x-36 px-12 md:px-20 lg:flex-row">
       <div className="mb-8 lg:mb-0">
-        <h1 className="mb-6 w-[14ch] bg-gradient-to-r from-highland-700 via-highland-500 to-highland-300 bg-clip-text text-4xl font-medium text-transparent sm:text-5xl md:text-6xl">
+        <h1 className="mb-6 w-[14ch] bg-gradient-to-r from-highland-700 via-highland-500 to-highland-300 bg-clip-text text-4xl font-medium text-transparent sm:text-5xl md:text-[80px] md:font-bold">
           Turn Your Waste into Wealth
         </h1>
         <div className="relative pb-8 pt-4 lg:hidden lg:w-1/2">
-          <img src="/hero-img.png" alt="hero-image" />
+          <Image src="/hero-img.png" alt="hero-image" width={500} height={500} />
         </div>
         <p className="mb-8 text-lg font-light sm:text-xl">
           Join our waste bank app and start earning rewards for your recycling efforts. Together, we
@@ -27,7 +28,7 @@ export default function Hero() {
         </div>
       </div>
       <div className="relative hidden md:w-1/2 lg:block">
-        <img src="/hero-img.png" alt="hero-image" />
+        <Image src="/hero-img.png" alt="hero-image" width={700} height={700} />
       </div>
     </div>
   );

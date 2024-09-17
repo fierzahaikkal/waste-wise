@@ -1,7 +1,6 @@
 import Link from "next/link";
 import BrandLogo from "../brand-logo";
 import Socials from "./socials";
-import SubTitle from "@/app/_components/subtitle";
 import { Input } from "@nextui-org/input";
 import { Button } from "@nextui-org/button";
 
