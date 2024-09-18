@@ -4,6 +4,8 @@ import Services from "@/app/_components/services";
 import Navbar from "@/components/navbar";
 import { getErrorMessage } from "@/utils/get-error-msg";
 import { createSupabaseServerClient } from "@/utils/supabase/server";
+import Products from "./_components/product-section";
+import Education from "./_components/education-section";
 
 export default async function Index() {
   const canInitSupabaseClient = () => {
@@ -25,8 +27,12 @@ export default async function Index() {
     <section>
       <Navbar isSupabaseConnected={isSupabaseConnected} />
       <Hero />
-      <Services />
-      <Footer />
+      <div className="flex flex-col gap-y-[80px]">
+        <Services />
+        <Products />
+        <Education />
+        <Footer />
+      </div>
     </section>
   );
 }

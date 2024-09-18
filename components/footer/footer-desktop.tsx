@@ -1,8 +1,8 @@
 import Link from "next/link";
 import BrandLogo from "../brand-logo";
 import Socials from "./socials";
-import { Input } from "@nextui-org/input";
-import { Button } from "@nextui-org/button";
+// import { Input } from "@nextui-org/input";
+// import { Button } from "@nextui-org/button";
 
 const FooterDesktop = () => {
   return (
@@ -78,7 +78,7 @@ const FooterDesktop = () => {
         </div> */}
 
         {/* Section 3 */}
-        <div className="place-content-center rounded-xl bg-gray-700 px-8 py-6">
+        <div className="place-content-center rounded-xl bg-[#292A32] px-8 py-6">
           <form className="flex items-center justify-center gap-x-6">
             <input
               type="email"
@@ -93,12 +93,6 @@ const FooterDesktop = () => {
             </button>
           </form>
         </div>
-        <form className="flex w-[30rem] items-center space-x-2 rounded-xl bg-[#292A32] px-10 py-16">
-          <Input size="lg" placeholder="Email" name="email" variant="bordered" />
-          <Button className="bg-highland-400 px-10 py-8 font-semibold capitalize">
-            Subcribe to news
-          </Button>
-        </form>
       </div>
       <div className="mt-8 flex items-center gap-x-4 border-t border-gray-300 pt-6">
         <p className="text-gray-400">© 2024 WasteWise. All rights reserved.</p>
