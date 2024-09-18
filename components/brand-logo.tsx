@@ -2,6 +2,7 @@ import { cn } from "@nextui-org/react";
 import { Recycle } from "lucide-react";
 import React from "react";
 import Show from "./elements/show";
+import Link from "next/link";
 
 type Props = {
   iconSize: number;
@@ -23,13 +24,14 @@ const BrandLogo = (props: Props) => {
       <Show when={showIcon!}>
         <Recycle color="#a4bc99" size={iconSize ?? 56} />
       </Show>
-      <p
+      <Link
+        href={"/"}
         className={cn("text-5xl font-bold", className, {
           [textSize]: textSize,
         })}
       >
         WasteWise
-      </p>
+      </Link>
     </div>
   );
 };
