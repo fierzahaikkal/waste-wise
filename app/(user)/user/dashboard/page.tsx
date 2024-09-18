@@ -1,5 +1,5 @@
 const Page = () => {
-  return <p>admin only</p>;
+  return <p>user only</p>;
 };
 
 export default Page;

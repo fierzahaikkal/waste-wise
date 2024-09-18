@@ -10,9 +10,11 @@ import {
 } from "@nextui-org/react";
 import React, { useCallback } from "react";
 import { useRouter } from "next/navigation";
+import useAuth from "@/hooks/use-auth";
 
 export const UserDropdown = () => {
   const router = useRouter();
+  const { user } = useAuth();
 
   const handleLogout = useCallback(async () => {
     router.replace("/login");
@@ -29,7 +31,7 @@ export const UserDropdown = () => {
       <DropdownMenu aria-label="User menu actions">
         <DropdownItem key="profile" className="flex w-full flex-col items-start justify-start">
           <p>Signed in as</p>
-          <p>admin</p>
+          <p>{user?.email}</p>
         </DropdownItem>
         <DropdownItem key="settings">My Settings</DropdownItem>
         <DropdownItem key="team_settings">Team Settings</DropdownItem>

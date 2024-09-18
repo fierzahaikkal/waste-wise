@@ -30,8 +30,8 @@ export const SidebarWrapper = () => {
             <SidebarItem title="Home" icon={<HomeIcon />} isActive={pathname === "/"} href="/" />
             <SidebarMenu title="Main Menu">
               <SidebarItem
-                href="/dashboard/waste-bank"
-                isActive={pathname === "/dashboard/waste-bank"}
+                href="/user/dashboard/waste-bank"
+                isActive={pathname === "/user/dashboard/waste-bank"}
                 title="Waste Bank"
                 icon={<TvIcon />}
               />
