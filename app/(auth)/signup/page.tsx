@@ -1,15 +1,11 @@
-// import Show from "@/components/elements/show";
-
-"use client";
-
+/* eslint-disable react-server-components/use-client */
+import Show from "@/components/elements/show";
 import { createSupabaseServerClient } from "@/utils/supabase/server";
 import { Input } from "@nextui-org/input";
-// import { Lock, Mail } from "lucide-react";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 import { AUTH_TOKEN_COOKIE } from "@/utils/constant";
 import { SubmitButton } from "../submit-button";
-// import Link from "next/link";
 import { revalidatePath } from "next/cache";
 
 export default function SignUpPage({
@@ -109,7 +105,9 @@ export default function SignUpPage({
                     className="w-full"
                   />
                 </div>
-
+                <Show when={!!searchParams?.message}>
+                  <p className="mt-4 text-danger-500">{searchParams.message}</p>
+                </Show>
                 <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
                   <SubmitButton
                     className="inline-block shrink-0 rounded-md border border-highland-600 bg-highland-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-highland-600 focus:outline-none focus:ring active:text-highland-500"
