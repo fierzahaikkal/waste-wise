@@ -4,6 +4,7 @@ import useAuth from "@/hooks/use-auth";
 import { useRouter } from "next/navigation";
 import ReactDOM from "react-dom";
 import BrandLogo from "../brand-logo";
+import Link from "next/link";
 
 type Props = {
   isOpen: boolean;
@@ -50,22 +51,28 @@ const NavbarMobile = ({ isOpen, onClose }: Props) => {
         <nav>
           <ul className="space-y-6">
             <li>
-              <a href="/" className="text-lg font-semibold text-gray-800 hover:text-gray-500">
-                Home
-              </a>
-            </li>
-            <li>
-              <a href="/about" className="text-lg font-semibold text-gray-800 hover:text-gray-500">
-                About
-              </a>
-            </li>
-            <li>
-              <a
-                href="/services"
+              <Link
+                href={"/shop"}
                 className="text-lg font-semibold text-gray-800 hover:text-gray-500"
               >
-                Services
-              </a>
+                Shop
+              </Link>
+            </li>
+            <li>
+              <Link
+                href={"/education"}
+                className="text-lg font-semibold text-gray-800 hover:text-gray-500"
+              >
+                Education
+              </Link>
+            </li>
+            <li>
+              <Link
+                href={"/team"}
+                className="text-lg font-semibold text-gray-800 hover:text-gray-500"
+              >
+                About Us
+              </Link>
             </li>
           </ul>
         </nav>

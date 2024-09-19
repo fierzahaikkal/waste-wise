@@ -19,13 +19,13 @@ export default function NavbarDesktop(props: NavbarDesktopProps) {
       <nav>
         <ul className="flex items-center gap-4">
           <li className="cursor-pointer font-normal transition-all hover:text-highland-300">
-            Services
+            <Link href={"/shop"}>Shop</Link>
           </li>
           <li className="cursor-pointer font-normal transition-all hover:text-highland-300">
-            Education
+            <Link href={"/education"}>Education</Link>
           </li>
           <li className="cursor-pointer font-normal transition-all hover:text-highland-300">
-            About Us
+            <Link href={"/team"}>About Us</Link>
           </li>
           <li>
             <Show when={isSupabaseConnected}>

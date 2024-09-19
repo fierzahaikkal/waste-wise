@@ -1,38 +1,31 @@
-import SectionContainer from "@/components/section-container";
 import { Button } from "@nextui-org/button";
-import Image from "next/image";
 
 export default function Hero() {
   return (
-    <SectionContainer>
-      <div className="-mt-14 flex min-h-screen flex-col items-center justify-center gap-x-36 lg:flex-row">
-        <div className="mb-8 lg:mb-0">
-          <h1 className="mb-6 w-[14ch] bg-gradient-to-r from-highland-700 via-highland-500 to-highland-300 bg-clip-text text-4xl font-medium text-transparent sm:text-5xl md:text-[80px] md:font-bold">
-            Turn Your Waste into Wealth
+    <section className="bg-white dark:bg-gray-900">
+      <div className="container mx-auto px-6 py-16 text-center">
+        <div className="mx-auto max-w-lg">
+          <h1 className="bg-gradient-to-r from-highland-700 via-highland-500 to-highland-300 bg-clip-text text-3xl font-semibold text-gray-800 text-transparent dark:text-white sm:text-5xl md:text-[80px] md:font-bold lg:text-4xl">
+            Double Earnings and Growth Community From Your Waste
           </h1>
-          <div className="relative pb-8 pt-4 lg:hidden lg:w-1/2">
-            <Image src="/hero-img.png" alt="hero-image" width={500} height={500} />
-          </div>
-          <p className="mb-8 text-lg font-light sm:text-xl">
-            Join our waste bank app and start earning rewards for your recycling efforts. Together,
-            we can create a cleaner, greener future.
+          <p className="mt-6 text-gray-500 dark:text-gray-300">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Libero similique obcaecati
+            illum mollitia.
           </p>
-          <div className="flex flex-col gap-4 sm:flex-row">
-            <Button size="lg" className="bg-highland-800 text-white hover:bg-highland-900">
-              Get Started
-            </Button>
-            <Button
-              size="lg"
-              className="border-green-600 bg-highland-100 hover:bg-green-100 hover:text-green-600"
-            >
-              Learn More
-            </Button>
-          </div>
+          <Button className="mt-6 rounded-lg bg-highland-600 px-5 py-2 text-center text-sm font-medium leading-5 text-white hover:bg-blue-500 focus:outline-none lg:mx-0 lg:w-auto">
+            Lets join us!
+          </Button>
+          <p className="mt-3 text-sm text-gray-400">Go Participated</p>
         </div>
-        <div className="relative hidden md:w-1/2 lg:block">
-          <Image src="/hero-img.png" alt="hero-image" width={700} height={700} />
+
+        <div className="mt-10 flex justify-center">
+          <img
+            className="h-[400px] w-full rounded-xl object-cover lg:w-4/5"
+            alt=""
+            src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80"
+          />
         </div>
       </div>
-    </SectionContainer>
+    </section>
   );
 }
