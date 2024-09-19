@@ -8,19 +8,14 @@ import Show from "../elements/show";
 import NavbarDesktop from "./navbar-desktop";
 import NavbarMobile from "./navbar-mobile";
 
-type Props = {
-  isSupabaseConnected: boolean;
-};
-
-export default function Navbar(props: Props) {
+export default function Navbar() {
   const { isOpen, onClose, onOpen } = useDisclosure(false);
   const mobile = useMediaQuery("(max-width: 768px)");
-  const { isSupabaseConnected } = props;
 
   return (
     <ClientOnly>
-      <Show when={mobile} fallback={<NavbarDesktop isSupabaseConnected={isSupabaseConnected} />}>
-        <div className="flex w-full flex-row items-center justify-between p-8">
+      <Show when={mobile} fallback={<NavbarDesktop />}>
+        <div className="relative z-[110] flex w-full flex-row items-center justify-between p-8">
           <p className="text-3xl font-bold">Waste Wise</p>
           <button className="rounded-lg border border-slate-950 p-2" onClick={onOpen}>
             <Menu />

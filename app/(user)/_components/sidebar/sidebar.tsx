@@ -3,7 +3,7 @@
 
 "use client";
 
-import { BoxIcon, HomeIcon, TvIcon, UserIcon } from "lucide-react";
+import { BotMessageSquare, BoxIcon, HomeIcon, TvIcon, Wallet } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useSidebarContext } from "../../_contexts/sidebar-context";
 import { SidebarItem } from "./sidebar-item";
@@ -36,9 +36,16 @@ export const SidebarWrapper = () => {
                 icon={<TvIcon />}
               />
               <SidebarItem
-                isActive={pathname === "/customer-orders"}
-                title="Customer Orders"
-                icon={<UserIcon />}
+                isActive={pathname === "/user/dashboard/purchases"}
+                href={"/user/dashboard/purchases"}
+                title="My Purchases"
+                icon={<Wallet />}
+              />
+              <SidebarItem
+                isActive={pathname === "/user/dashboard/chat"}
+                href={"/user/dashboard/chat"}
+                title="AI Virtual Assistant"
+                icon={<BotMessageSquare />}
               />
               <SidebarItem
                 isActive={pathname === "/products"}

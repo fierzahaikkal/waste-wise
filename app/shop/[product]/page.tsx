@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { getErrorMessage } from "@/utils/get-error-msg";
-import { createSupabaseServerClient } from "@/utils/supabase/server";
+import { createSupabaseServerClientWithTypes } from "@/utils/supabase/server";
 import { PostgrestError, SupabaseClient } from "@supabase/supabase-js";
 import ProductDetail from "../_components/product-detail";
+import { Database } from "@/utils/supabase/types";
 
 type Product = {
   id: string;
@@ -13,9 +14,9 @@ type Product = {
   img_url: string;
 };
 
-async function getProduct(
+async function getProduct<T extends SupabaseClient<Database>>(
   id: string,
-  supabase: SupabaseClient<any, "public", any>
+  supabase: T
 ): Promise<{ product: Product[] | null | any[]; error: string | null | PostgrestError }> {
   try {
     const { data, error } = await supabase.from("products").select("*").eq("id", id);
@@ -30,7 +31,7 @@ async function getProduct(
 }
 
 const ProductDetailPage = async ({ params }: { params: { product: string } }) => {
-  const supabase = createSupabaseServerClient();
+  const supabase = createSupabaseServerClientWithTypes();
   const { product, error } = await getProduct(params.product, supabase);
   if (error || product == null) {
     return <div>Error: {error?.toString().valueOf()}</div>;

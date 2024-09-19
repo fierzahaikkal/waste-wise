@@ -1,70 +1,76 @@
 "use client";
 
-import { useEffect } from "react";
+import useAuth from "@/hooks/use-auth";
+import { Divider } from "@nextui-org/divider";
+import Image from "next/image";
+import { useGetOrders } from "../hooks/use-get-orders";
+import { formatRupiah } from "@/utils/format-rupiah";
 
-const usernamePassword = `${process.env.NEXT_PUBLIC_MIDTRANS_SERVER_KEY_DEV}:`;
-const AUTH_STRING = btoa(usernamePassword); // convert to base64
-const getPaymentLinkDetails = "https://api.sandbox.midtrans.com/v1/payment-links/barang-bekas-04"; // pake ini
-
-const TransactionsPage = () => {
-  useEffect(() => {
-    async function getPaymentStatus() {
-      try {
-        const res = await fetch(getPaymentLinkDetails, {
-          method: "GET",
-          headers: {
-            Accept: "application/json",
-            authorization: `Basic ${AUTH_STRING}`,
-            "Content-Type": "application/json",
-          },
-        });
-        const data = await res.json();
-        console.log(data);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-    getPaymentStatus();
-  }, []);
+export default function OrderHistory() {
+  const { user } = useAuth();
+  const { data: orders } = useGetOrders(user?.authUserID as string);
+  console.log(orders);
 
   return (
-    <div className="flex min-h-screen flex-col items-center bg-gray-100 p-6">
-      <h1 className="mb-6 text-3xl font-bold">Your Transactions</h1>
-      <div className="w-full max-w-3xl rounded-lg bg-white p-6 shadow-md">
-        <h2 className="mb-4 text-2xl font-semibold">Order Summary</h2>
-
-        <div className="mb-4">
-          <p className="text-gray-600">
-            <strong>Order ID:</strong> order id
-          </p>
-          <p className="text-gray-600">
-            <strong>Transaction Time:</strong> 00.00
-          </p>
-          <p className="text-gray-600">
-            <strong>Payment Type:</strong> credit card
-          </p>
-        </div>
-
-        <div className="mb-4 mt-4 border-t border-gray-200" />
-
-        <div className="mb-4">
-          <h3 className="mb-2 text-xl font-semibold">Payment Status</h3>
-          <p className={`text-lg text-green-300`}>payment sucessful</p>
-
-          <div className="mt-4 h-4 w-full rounded-full bg-gray-200">
-            <div className={`h-4 rounded-full`} />
+    <div className="container mx-auto grid place-content-center px-10 py-16">
+      <h1 className="mb-4 text-3xl font-semibold">Order history</h1>
+      <p className="mb-6 text-gray-500">
+        Check the status of recent and old orders & discover more products
+      </p>
+      {orders?.map(order => (
+        <div key={order.order_id} className="mb-8 pb-6">
+          <div className="mb-4 flex justify-between">
+            {/* Order details */}
+            <div className="flex flex-col items-start gap-x-6 space-x-6 lg:flex-row lg:items-center">
+              <div className="flex items-center gap-x-1">
+                <p className="text-gray-500">Order ID:</p>
+                <p className="font-bold">{order.order_id}</p>
+              </div>
+              <div className="flex items-center gap-x-1">
+                <p className="text-gray-500">Date:</p>
+                <p className="font-bold">{new Date(order.date).toLocaleDateString()}</p>
+              </div>
+              <div className="flex items-center gap-x-1">
+                <p className="text-gray-500">Order Status:</p>
+                <p
+                  className={`font-light ${
+                    order.order_status === "Delivered" ? "text-green-600" : "text-yellow-600"
+                  }`}
+                >
+                  {order.order_status}
+                </p>
+              </div>
+            </div>
+          </div>
+          <Divider className="mb-10 mt-5" />
+          <div className="mb-4 flex items-start justify-between gap-x-4">
+            {/* Product image */}
+            <div className="relative h-56 w-56">
+              <Image
+                fill
+                src={order.img_url}
+                alt={order.product_name}
+                className="absolute h-full w-full rounded-md object-cover"
+              />
+            </div>
+            <div className="flex h-full flex-col justify-between gap-y-4">
+              {/* Product name and description */}
+              <div>
+                <h3 className="text-lg font-medium">{order.product_name}</h3>
+                <p className="line-clamp-2 max-w-[80ch] text-sm text-gray-500">
+                  {order.product_desc}
+                </p>
+              </div>
+              <p className="text-sm text-gray-700">{formatRupiah(order.gross_amount)}</p>
+            </div>
+            <div className="text-right">
+              <button className="mr-4 text-gray-500 transition-all hover:text-gray-600">
+                View Product
+              </button>
+            </div>
           </div>
         </div>
-
-        <div className="mb-4 mt-4 border-t border-gray-200" />
-
-        <div className="flex items-center justify-between">
-          <p className="text-xl font-semibold">Total: </p>
-          <p className="text-xl font-bold text-gray-800">Rp 100000</p>
-        </div>
-      </div>
+      ))}
     </div>
   );
-};
-
-export default TransactionsPage;
+}

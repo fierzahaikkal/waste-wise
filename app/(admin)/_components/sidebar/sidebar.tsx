@@ -36,12 +36,14 @@ export const SidebarWrapper = () => {
                 icon={<TvIcon />}
               />
               <SidebarItem
-                isActive={pathname === "/customer-orders"}
+                href="/dashboard/orders"
+                isActive={pathname === "/dashboard/orders"}
                 title="Customer Orders"
                 icon={<UserIcon />}
               />
               <SidebarItem
-                isActive={pathname === "/products"}
+                href="/dashboard/products"
+                isActive={pathname === "/dashboard/products"}
                 title="Products"
                 icon={<BoxIcon />}
               />

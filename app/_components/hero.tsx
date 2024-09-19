@@ -1,24 +1,36 @@
-import { Button } from "@nextui-org/button";
+import { BackgroundBeams } from "./bg-beams";
 
 export default function Hero() {
   return (
-    <section className="bg-white dark:bg-gray-900">
+    <section className="bg-white py-20">
       <div className="container mx-auto px-6 py-16 text-center">
         <div className="mx-auto max-w-lg">
-          <h1 className="bg-gradient-to-r from-highland-700 via-highland-500 to-highland-300 bg-clip-text text-3xl font-semibold text-gray-800 text-transparent dark:text-white sm:text-5xl md:text-[80px] md:font-bold lg:text-4xl">
-            Double Earnings and Growth Community From Your Waste
-          </h1>
+          <div className="relative">
+            <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-green-300 to-yellow-300 opacity-70 blur-2xl" />
+            <h1 className="relative text-3xl font-semibold text-gray-800 sm:text-5xl md:text-[80px] md:font-bold lg:text-4xl">
+              Double Earnings and
+              <span className="text-blue-500">
+                {" "}
+                Growth Community
+                <br />
+              </span>
+              From Your Waste
+            </h1>
+          </div>
+
           <p className="mt-6 text-gray-500 dark:text-gray-300">
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Libero similique obcaecati
             illum mollitia.
           </p>
-          <Button className="mt-6 rounded-lg bg-highland-600 px-5 py-2 text-center text-sm font-medium leading-5 text-white hover:bg-blue-500 focus:outline-none lg:mx-0 lg:w-auto">
-            Lets join us!
-          </Button>
-          <p className="mt-3 text-sm text-gray-400">Go Participated</p>
+          <button className="group relative z-[95] mt-6 p-[3px]">
+            <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-green-300 to-yellow-400" />
+            <div className="group relative rounded-[6px] bg-black px-8 py-2 text-white transition duration-200 hover:bg-transparent group-hover:text-black">
+              Lets join us!
+            </div>
+          </button>
         </div>
 
-        <div className="mt-10 flex justify-center">
+        <div className="relative z-[95] mt-10 flex justify-center">
           <img
             className="h-[400px] w-full rounded-xl object-cover lg:w-4/5"
             alt=""
@@ -26,6 +38,7 @@ export default function Hero() {
           />
         </div>
       </div>
+      <BackgroundBeams />
     </section>
   );
 }
