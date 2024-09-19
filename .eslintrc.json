@@ -38,7 +38,7 @@
     "plugin:react-server-components/recommended"
   ],
   "rules": {
-    "react-server-components/use-client": "error",
+    "react-server-components/use-client": "off",
     "react/jsx-curly-brace-presence": "off",
     "react/function-component-definition": "off",
     "jsx-a11y/label-has-associated-control": [

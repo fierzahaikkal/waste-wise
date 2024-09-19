@@ -1,8 +1,6 @@
-/* eslint-disable react-server-components/use-client */
 import Show from "@/components/elements/show";
 import { createSupabaseServerClient } from "@/utils/supabase/server";
 import { Input } from "@nextui-org/input";
-// import { Lock, Mail } from "lucide-react";
 import { redirect } from "next/navigation";
 import { SubmitButton } from "../submit-button";
 import { cookies } from "next/headers";
