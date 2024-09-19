@@ -1,6 +1,7 @@
 import AuthButtonClient from "@/components/auth-button/auth-button.client";
 import BrandLogo from "@/components/brand-logo";
 import { cn } from "@nextui-org/react";
+import Link from "next/link";
 
 const NavBarDesktop = () => {
   return (
@@ -9,13 +10,13 @@ const NavBarDesktop = () => {
       <nav>
         <ul className="flex items-center gap-4">
           <li className="cursor-pointer font-normal text-white transition-all hover:text-highland-300">
-            Services
+            <Link href={"/shop"}>Shop</Link>
           </li>
           <li className="cursor-pointer font-normal text-white transition-all hover:text-highland-300">
-            Education
+            <Link href={"/education"}>Education</Link>
           </li>
           <li className="cursor-pointer font-normal text-white transition-all hover:text-highland-300">
-            About Us
+            <Link href={"/team"}>About Us</Link>
           </li>
           <li>
             <div className={cn("flex items-center gap-2")}>

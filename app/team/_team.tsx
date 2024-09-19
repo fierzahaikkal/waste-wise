@@ -1,6 +1,5 @@
 import { Instagram, LinkedinIcon } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 
 const teamMembers = [
   {
@@ -31,34 +30,51 @@ const teamMembers = [
 
 export default function TeamSection() {
   return (
-    <section className="mt-16 py-12 md:h-[50rem]">
-      <div className="container mx-auto px-4">
-        <h2 className="mb-12 text-center text-3xl font-bold">Meet the Team</h2>
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
-          {teamMembers.map((member, index) => (
-            // eslint-disable-next-line react/no-array-index-key
-            <div key={index} className="flex flex-col items-center">
-              <div className="relative mb-4 h-48 w-48">
-                <Image
-                  src={member.image}
-                  alt={member.name}
-                  fill
-                  className="rounded-full border-4 border-white object-cover shadow-lg"
-                />
-              </div>
-              <h3 className="mb-1 text-xl font-semibold">{member.name}</h3>
-              <p className="text-gray-600">{member.role}</p>
-              <div className="items-cente flex justify-center gap-x-4 py-2">
-                <Link href={member.instagram} target="_blank">
+    <section className="mx-auto px-4 py-16 sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8 lg:py-20">
+      <div className="mx-auto mb-10 sm:text-center lg:max-w-xl">
+        <p className="mb-4 inline-block rounded-full bg-highland-400 px-3 py-2 text-xs font-semibold uppercase tracking-wider text-white">
+          Know Our Team
+        </p>
+        <p className="text-base text-gray-700 md:text-lg">
+          Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+          laudantium.
+        </p>
+      </div>
+      <div className="mx-auto grid gap-10 lg:max-w-screen-lg lg:grid-cols-2">
+        {teamMembers.map(member => (
+          <div className="grid sm:grid-cols-3">
+            <div className="relative h-48 max-h-full w-full rounded shadow sm:h-auto">
+              <Image
+                className="absolute h-full w-full rounded object-cover"
+                src={member.image}
+                alt="Person"
+                width={500}
+                height={500}
+              />
+            </div>
+            <div className="mt-5 flex flex-col justify-center sm:col-span-2 sm:mt-0 sm:p-5">
+              <p className="text-lg font-bold">{member.name}</p>
+              <p className="mb-4 text-xs text-gray-800">{member.role}</p>
+              <p className="mb-4 text-sm tracking-wide text-gray-800">
+                Vincent Van Gogh’s most popular painting, The Starry Night.
+              </p>
+              <div className="flex items-center space-x-3">
+                <a
+                  href={member.instagram}
+                  className="hover:text-deep-purple-accent-400 text-gray-600 transition-colors duration-300"
+                >
                   <Instagram />
-                </Link>
-                <Link href={member.linkedin} target="_blank">
+                </a>
+                <a
+                  href={member.linkedin}
+                  className="hover:text-deep-purple-accent-400 text-gray-600 transition-colors duration-300"
+                >
                   <LinkedinIcon />
-                </Link>
+                </a>
               </div>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     </section>
   );

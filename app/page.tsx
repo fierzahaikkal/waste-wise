@@ -26,8 +26,8 @@ export default async function Index() {
   return (
     <section>
       <Navbar isSupabaseConnected={isSupabaseConnected} />
-      <Hero />
       <div className="flex flex-col gap-y-[80px]">
+        <Hero />
         <Services />
         <Products />
         <Education />
