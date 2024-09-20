@@ -6,6 +6,7 @@ import { getErrorMessage } from "@/utils/get-error-msg";
 import { createSupabaseServerClient } from "@/utils/supabase/server";
 import Products from "./_components/product-section";
 import Education from "./_components/education-section";
+import Faq from "./_components/faq";
 
 export default async function Index() {
   const canInitSupabaseClient = () => {
@@ -26,11 +27,12 @@ export default async function Index() {
   return (
     <section>
       <Navbar isSupabaseConnected={isSupabaseConnected} />
-      <div className="flex flex-col gap-y-[80px]">
+      <div className="flex flex-col gap-y-[80px] md:gap-y-[200px]">
         <Hero />
         <Services />
         <Products />
         <Education />
+        <Faq />
         <Footer />
       </div>
     </section>

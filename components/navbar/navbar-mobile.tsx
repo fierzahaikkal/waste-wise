@@ -81,7 +81,7 @@ const NavbarMobile = ({ isOpen, onClose }: Props) => {
         <div className="absolute bottom-8 left-0 w-full px-6">
           <button
             onClick={isAuthenticated ? onLogout : onLogin}
-            className="w-full rounded-md bg-blue-500 py-2 text-white hover:bg-blue-600"
+            className="w-full rounded-md bg-highland-500 py-2 text-white hover:bg-highland-600"
           >
             {isAuthenticated ? "Logout" : "Login"}
           </button>
