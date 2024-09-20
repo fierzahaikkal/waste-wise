@@ -4,6 +4,7 @@ import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 import Education from "./_components/education-section";
 import Products from "./_components/product-section";
+import Faq from "./_components/faq";
 
 export default async function Index() {
   return (
@@ -14,6 +15,7 @@ export default async function Index() {
         <Services />
         <Products />
         <Education />
+        <Faq />
         <Footer />
       </div>
     </section>
