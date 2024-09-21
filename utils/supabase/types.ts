@@ -5,31 +5,21 @@ export type Database = {
     Tables: {
       admin: {
         Row: {
-          fk_id_bank: string | null;
           fk_id_user: string | null;
           id: string;
           nama: string | null;
         };
         Insert: {
-          fk_id_bank?: string | null;
           fk_id_user?: string | null;
           id?: string;
           nama?: string | null;
         };
         Update: {
-          fk_id_bank?: string | null;
           fk_id_user?: string | null;
           id?: string;
           nama?: string | null;
         };
         Relationships: [
-          {
-            foreignKeyName: "admin_fk_id_bank_fkey";
-            columns: ["fk_id_bank"];
-            isOneToOne: false;
-            referencedRelation: "bank_sampah";
-            referencedColumns: ["id"];
-          },
           {
             foreignKeyName: "admin_fk_id_user_fkey";
             columns: ["fk_id_user"];
@@ -39,48 +29,27 @@ export type Database = {
           },
         ];
       };
-      bank_sampah: {
+      jenis_sampah: {
         Row: {
-          addr: string | null;
-          coor: string | null;
+          created_at: number | null;
+          harga_per_kg: number | null;
           id: string;
-          id_bank: string | null;
-          kategori_sampah: string[] | null;
-          nama_bank: string | null;
-          total_setor: number | null;
+          nama: string | null;
+          updated_at: number | null;
         };
         Insert: {
-          addr?: string | null;
-          coor?: string | null;
+          created_at?: number | null;
+          harga_per_kg?: number | null;
           id?: string;
-          id_bank?: string | null;
-          kategori_sampah?: string[] | null;
-          nama_bank?: string | null;
-          total_setor?: number | null;
+          nama?: string | null;
+          updated_at?: number | null;
         };
         Update: {
-          addr?: string | null;
-          coor?: string | null;
+          created_at?: number | null;
+          harga_per_kg?: number | null;
           id?: string;
-          id_bank?: string | null;
-          kategori_sampah?: string[] | null;
-          nama_bank?: string | null;
-          total_setor?: number | null;
-        };
-        Relationships: [];
-      };
-      kualitas_sampah: {
-        Row: {
-          id: string;
-          kualitas: Database["public"]["Enums"]["kualitas"] | null;
-        };
-        Insert: {
-          id?: string;
-          kualitas?: Database["public"]["Enums"]["kualitas"] | null;
-        };
-        Update: {
-          id?: string;
-          kualitas?: Database["public"]["Enums"]["kualitas"] | null;
+          nama?: string | null;
+          updated_at?: number | null;
         };
         Relationships: [];
       };
@@ -185,108 +154,82 @@ export type Database = {
       };
       setor: {
         Row: {
-          berat_sampah: number | null;
-          fk_id_bank: string | null;
+          created_at: number | null;
           fk_id_cust: string | null;
-          fk_kualitas_sampah: string | null;
-          fk_status_setor: string | null;
           harga_setor: number | null;
           id: string;
+          id_jenis_sampah: string;
+          quantity: number | null;
           rincian_sampah: string | null;
+          updated_at: number | null;
         };
         Insert: {
-          berat_sampah?: number | null;
-          fk_id_bank?: string | null;
+          created_at?: number | null;
           fk_id_cust?: string | null;
-          fk_kualitas_sampah?: string | null;
-          fk_status_setor?: string | null;
           harga_setor?: number | null;
           id?: string;
+          id_jenis_sampah: string;
+          quantity?: number | null;
           rincian_sampah?: string | null;
+          updated_at?: number | null;
         };
         Update: {
-          berat_sampah?: number | null;
-          fk_id_bank?: string | null;
+          created_at?: number | null;
           fk_id_cust?: string | null;
-          fk_kualitas_sampah?: string | null;
-          fk_status_setor?: string | null;
           harga_setor?: number | null;
           id?: string;
+          id_jenis_sampah?: string;
+          quantity?: number | null;
           rincian_sampah?: string | null;
+          updated_at?: number | null;
         };
         Relationships: [
-          {
-            foreignKeyName: "setor_fk_id_bank_fkey";
-            columns: ["fk_id_bank"];
-            isOneToOne: false;
-            referencedRelation: "bank_sampah";
-            referencedColumns: ["id"];
-          },
           {
             foreignKeyName: "setor_fk_id_cust_fkey";
             columns: ["fk_id_cust"];
             isOneToOne: false;
             referencedRelation: "users";
-            referencedColumns: ["id"];
+            referencedColumns: ["fk_user_id"];
           },
           {
-            foreignKeyName: "setor_fk_kualitas_sampah_fkey";
-            columns: ["fk_kualitas_sampah"];
+            foreignKeyName: "setor_id_jenis_sampah_fkey";
+            columns: ["id_jenis_sampah"];
             isOneToOne: false;
-            referencedRelation: "kualitas_sampah";
-            referencedColumns: ["id"];
-          },
-          {
-            foreignKeyName: "setor_fk_status_setor_fkey";
-            columns: ["fk_status_setor"];
-            isOneToOne: false;
-            referencedRelation: "status_setor";
+            referencedRelation: "jenis_sampah";
             referencedColumns: ["id"];
           },
         ];
-      };
-      status_setor: {
-        Row: {
-          id: string;
-          keterangan: Database["public"]["Enums"]["status"];
-        };
-        Insert: {
-          id?: string;
-          keterangan: Database["public"]["Enums"]["status"];
-        };
-        Update: {
-          id?: string;
-          keterangan?: Database["public"]["Enums"]["status"];
-        };
-        Relationships: [];
       };
       users: {
         Row: {
           alamat: string | null;
           email: string | null;
           fk_id_role: string | null;
-          fk_id_setor: string | null;
           fk_user_id: string | null;
           id: string;
           phone: string | null;
+          tabungan: number | null;
+          usia: number | null;
         };
         Insert: {
           alamat?: string | null;
           email?: string | null;
           fk_id_role?: string | null;
-          fk_id_setor?: string | null;
           fk_user_id?: string | null;
           id?: string;
           phone?: string | null;
+          tabungan?: number | null;
+          usia?: number | null;
         };
         Update: {
           alamat?: string | null;
           email?: string | null;
           fk_id_role?: string | null;
-          fk_id_setor?: string | null;
           fk_user_id?: string | null;
           id?: string;
           phone?: string | null;
+          tabungan?: number | null;
+          usia?: number | null;
         };
         Relationships: [
           {
@@ -297,35 +240,7 @@ export type Database = {
             referencedColumns: ["id"];
           },
           {
-            foreignKeyName: "users_fk_id_role_fkey1";
-            columns: ["fk_id_role"];
-            isOneToOne: false;
-            referencedRelation: "roles";
-            referencedColumns: ["id"];
-          },
-          {
-            foreignKeyName: "users_fk_id_setor_fkey";
-            columns: ["fk_id_setor"];
-            isOneToOne: false;
-            referencedRelation: "setor";
-            referencedColumns: ["id"];
-          },
-          {
-            foreignKeyName: "users_fk_id_setor_fkey1";
-            columns: ["fk_id_setor"];
-            isOneToOne: false;
-            referencedRelation: "setor";
-            referencedColumns: ["id"];
-          },
-          {
             foreignKeyName: "users_fk_user_id_fkey";
-            columns: ["fk_user_id"];
-            isOneToOne: true;
-            referencedRelation: "users";
-            referencedColumns: ["id"];
-          },
-          {
-            foreignKeyName: "users_fk_user_id_fkey1";
             columns: ["fk_user_id"];
             isOneToOne: true;
             referencedRelation: "users";

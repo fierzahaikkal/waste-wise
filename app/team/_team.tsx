@@ -1,4 +1,6 @@
-import { InstagramIcon, LinkedinIcon } from "lucide-react";
+import React from "react";
+import { Instagram, Linkedin } from "lucide-react";
+import Image from "next/image";
 
 const teamMembers = [
   {
@@ -27,85 +29,59 @@ const teamMembers = [
   },
 ];
 
-type TeamMemberProps = {
-  name: string;
-  role: string;
-  image: string;
-  linkedin: string;
-  instagram: string;
-};
-
-function TeamMember(props: TeamMemberProps) {
-  const { name, role, image, linkedin, instagram } = props;
-  return (
-    <div className="mb-6 w-full px-6 sm:px-6 md:w-6/12 lg:w-3/12 lg:px-4">
-      <div className="flex flex-col">
-        {/* Avatar */}
-        <a href="/" className="mx-auto">
-          <img
-            alt="d"
-            className="rounded-2xl drop-shadow-md transition-all delay-100 duration-200 hover:drop-shadow-xl"
-            src={image}
-          />
-        </a>
-        {/* Details */}
-        <div className="mt-6 text-center">
-          {/* Name */}
-          <h1 className="mb-1 text-xl font-bold text-gray-900">{name}</h1>
-          {/* Title */}
-          <div className="mb-2 font-light text-gray-700">{role}</div>
-          {/* Social Icons */}
-          <div className="flex items-center justify-center opacity-50 transition-opacity duration-300 hover:opacity-100">
-            {/* Linkedin */}
-            <a href={linkedin} className="flex h-10 w-10 rounded-full hover:bg-indigo-50">
-              <LinkedinIcon className="mdi mdi-linkedin mx-auto mt-2 text-indigo-700" />
-            </a>
-            {/* Instagram */}
-            <a href={instagram} className="flex h-10 w-10 rounded-full hover:bg-orange-50">
-              <InstagramIcon className="mx-auto mt-2 text-orange-400" />
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 export default function TeamSection() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-white">
-      <div className="flex flex-col">
-        <div className="mt-8 flex flex-col">
-          {/* Meet the Team */}
-          <div className="container max-w-7xl px-4">
-            {/* Section Header */}
-            <div className="mb-24 flex flex-wrap justify-center text-center">
-              <div className="w-full px-4 lg:w-6/12">
-                {/* Header */}
-                <h1 className="mb-8 text-4xl font-bold text-gray-900">Meet the Team</h1>
-                {/* Description */}
-                <p className="text-lg font-light text-gray-700">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus eum accusantium
-                  illo aliquam nesciunt dicta doloremque!
-                </p>
+    <section className="bg-white py-16">
+      <div className="container mx-auto px-4">
+        <h2 className="mb-12 text-center text-4xl font-bold">
+          <span className="font-light text-zinc-900">Our Team</span>
+        </h2>
+        <div className="grid grid-cols-1 place-items-center gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          {teamMembers.map(member => (
+            <div
+              key={member.linkedin}
+              className="group/container relative w-[300px] overflow-hidden rounded-lg shadow-lg transition-all duration-300 ease-in-out hover:shadow-2xl"
+            >
+              <div className="relative h-[300px] w-[300px]">
+                <Image
+                  src={member.image}
+                  alt={member.name}
+                  fill
+                  className="absolute h-full w-full object-cover transition-all duration-300 ease-in-out group-hover/container:scale-110 group-hover/container:opacity-95"
+                />
+              </div>
+              <div className="absolute inset-0 flex translate-y-full flex-col justify-end bg-gradient-to-t from-black/90 via-black/75 to-transparent p-6 transition-all duration-300 ease-in-out group-hover/container:translate-y-0">
+                <h3 className="mb-1 text-xl font-semibold text-white">{member.name}</h3>
+                <p className="mb-4 text-gray-300">{member.role}</p>
+                <div className="flex space-x-4 opacity-0 transition-opacity duration-300 ease-in-out group-hover/container:opacity-100">
+                  {member.linkedin && (
+                    <a
+                      href={member.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-300 transition-colors duration-200 hover:text-white"
+                    >
+                      <Linkedin size={20} aria-hidden="true" />
+                      <span className="sr-only">LinkedIn profile of {member.name}</span>
+                    </a>
+                  )}
+                  {member.instagram && (
+                    <a
+                      href={member.instagram}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-300 transition-colors duration-200 hover:text-white"
+                    >
+                      <Instagram size={20} aria-hidden="true" />
+                      <span className="sr-only">Instagram of {member.name}</span>
+                    </a>
+                  )}
+                </div>
               </div>
             </div>
-            {/* Team Members */}
-            <div className="flex flex-wrap items-center justify-center gap-x-6">
-              {teamMembers.map(member => (
-                <TeamMember
-                  key={member.name}
-                  name={member.name}
-                  role={member.role}
-                  image={member.image}
-                  linkedin={member.linkedin}
-                  instagram={member.instagram}
-                />
-              ))}
-            </div>
-          </div>
+          ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 }

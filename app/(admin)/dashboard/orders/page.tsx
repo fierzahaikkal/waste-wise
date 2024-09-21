@@ -6,6 +6,7 @@ import { createSupabaseClient } from "@/utils/supabase/client";
 import { Select, SelectItem } from "@nextui-org/select";
 import { formatRupiah } from "@/utils/format-rupiah";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 const orderStatuses = ["pending", "delivered", "shipped"] as const;
 
@@ -24,7 +25,7 @@ const CustomersOrderPage = () => {
       .eq("id", orderId);
 
     if (error) {
-      console.error("Error updating status:", error.message);
+      toast.error(`Error updating status: ${error.message}}`);
     } else {
       router.refresh();
     }
@@ -46,7 +47,7 @@ const CustomersOrderPage = () => {
   if (isError) return <div>Something went wrong...</div>;
 
   return (
-    <div className="p-4">
+    <div className="mx-auto min-h-screen w-full max-w-[80rem] px-4 py-8">
       <h1 className="mb-4 text-2xl font-semibold">Customer Orders</h1>
       <table className="min-w-full overflow-x-scroll bg-white">
         <thead>
