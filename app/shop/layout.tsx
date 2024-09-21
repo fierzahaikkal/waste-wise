@@ -5,7 +5,7 @@ import React from "react";
 const ShopLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
-      <Navbar isSupabaseConnected />
+      <Navbar />
       {children}
       <Footer />
     </>

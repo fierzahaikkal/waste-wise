@@ -2,14 +2,14 @@
 import apiResolver from "@/api/api-resolver";
 import { AUTH_STRING } from "@/lib/midtrans";
 import { getErrorMessage } from "@/utils/get-error-msg";
-import { createSupabaseClient } from "@/utils/supabase/client";
+import { createSupabaseClientWithTypes } from "@/utils/supabase/client";
 import Axios from "axios";
 
 const baseURL = process.env.NEXT_PUBLIC_PAYMENT_LINKS_URL_DEV;
 const axios = Axios.create({
   baseURL,
 });
-const supabase = createSupabaseClient();
+const supabase = createSupabaseClientWithTypes();
 
 export type OrdersResponse = {
   img_url: string;
@@ -19,6 +19,7 @@ export type OrdersResponse = {
   date: string;
   order_status: string;
   product_desc: string;
+  product_id: string;
 };
 
 export type CreatePaymentLinkPayload = {
@@ -121,7 +122,7 @@ export async function getOrders(userId: string): Promise<OrdersResponse[]> {
     }
 
     // Extract product IDs from the orders
-    const productIds = orderData.map(order => order.fk_id_product) as string[];
+    const productIds = orderData.map(order => order.fk_id_product);
 
     // Fetch all product data in one query
     const { data: productData, error: productError } = await supabase
@@ -133,28 +134,31 @@ export async function getOrders(userId: string): Promise<OrdersResponse[]> {
       throw new Error(getErrorMessage(productError));
     }
 
-    // Create a map of productId to productData for quick lookup
-    const productMap = productData.reduce((map, product) => {
-      // eslint-disable-next-line no-param-reassign
-      map[product.id] = product;
-      return map;
-    }, {});
+    if (!productData || productData.length === 0) {
+      return [];
+    }
 
-    // Map each order to the corresponding product details and return the result
-    const orders = orderData.map(order => {
-      const product = productMap[order.fk_id_product as string];
+    // Combine order data and product data into OrdersResponse[]
+    const ordersResponse: OrdersResponse[] = orderData.map(order => {
+      const product = productData.find(p => p.id === order.fk_id_product);
+
+      if (!product) {
+        throw new Error("Product not found for order");
+      }
+
       return {
-        img_url: product.img_url,
-        product_name: product.name,
-        gross_amount: order.amount,
-        order_id: order.id_order,
-        date: order.created_at,
-        order_status: order.status_payment,
-        product_desc: product.desc,
+        img_url: product.img_url || "",
+        product_name: product.name || "Unknown product",
+        gross_amount: order.amount || 0,
+        order_id: order.id_order || "Unknown order ID",
+        date: order.created_at || "",
+        order_status: order.status_order || "Unknown status",
+        product_desc: product.desc || "No description available",
+        product_id: product.id || "Unknown product ID",
       };
     });
 
-    return orders;
+    return ordersResponse;
   } catch (error) {
     throw new Error(getErrorMessage(error));
   }

@@ -45,13 +45,13 @@ export default function AuthButtonClient(props: Props) {
       <button
         onClick={signOut}
         className={cn(
-          `group rounded-md border border-gray-950 bg-white px-5 py-3 no-underline hover:border-highland-500`,
+          `group rounded-md border border-gray-950 bg-white px-5 py-3 no-underline hover:border-red-300`,
           {
             "border-white bg-transparent font-light text-white": isSecondary,
           }
         )}
       >
-        <p className="font-normal transition-all group-hover:text-highland-300">Logout</p>
+        <p className="font-normal transition-all group-hover:text-red-500">Logout</p>
       </button>
     </div>
   ) : (
