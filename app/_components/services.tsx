@@ -43,7 +43,7 @@ const Services = () => {
       <div className="grid grid-cols-1 gap-y-8 lg:grid-cols-2 lg:items-center lg:gap-x-16">
         <div className="mx-auto max-w-lg text-center lg:mx-0 ltr:lg:text-left rtl:lg:text-right">
           <h2 className="text-3xl font-bold sm:text-4xl">
-            Find your right{" "}
+            Find your right&nbsp
             <span className="mb-5 mt-3 inline-block rounded-full bg-highland-200 px-6 py-2">
               services
             </span>

@@ -52,7 +52,7 @@ export default function FetchDataSteps() {
     <ol className="flex flex-col gap-6">
       <Step title="Create some tables and insert some data">
         <p>
-          Head over to the{" "}
+          Head over to the&nbsp
           <a
             href="https://supabase.com/dashboard/project/_/editor"
             className="font-bold text-foreground/80 hover:underline"
@@ -60,9 +60,9 @@ export default function FetchDataSteps() {
             rel="noreferrer"
           >
             Table Editor
-          </a>{" "}
-          for your Supabase project to create a table and insert some example data. If you&apos;re
-          stuck for creativity, you can copy and paste the following into the{" "}
+          </a>
+          &nbsp for your Supabase project to create a table and insert some example data. If
+          you&apos;re stuck for creativity, you can copy and paste the following into the&nbsp
           <a
             href="https://supabase.com/dashboard/project/_/sql/new"
             className="font-bold text-foreground/80 hover:underline"
@@ -70,8 +70,8 @@ export default function FetchDataSteps() {
             rel="noreferrer"
           >
             SQL Editor
-          </a>{" "}
-          and click RUN!
+          </a>
+          &nbsp and click RUN!
         </p>
         <Code code={create} />
       </Step>
@@ -79,11 +79,11 @@ export default function FetchDataSteps() {
       <Step title="Query Supabase data from Next.js">
         <p>
           To create a Supabase client and query data from an Async Server Component, create a new
-          page.tsx file at{" "}
+          page.tsx file at&nbsp
           <span className="rounded-md bg-foreground/20 px-2 py-1 text-foreground/80">
             /app/notes/page.tsx
-          </span>{" "}
-          and add the following.
+          </span>
+          &nbsp and add the following.
         </p>
         <Code code={server} />
         <p>Alternatively, you can use a Client Component.</p>

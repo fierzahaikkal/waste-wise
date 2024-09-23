@@ -10,8 +10,7 @@ export default function Hero() {
             <h1 className="relative text-3xl font-semibold text-gray-800 sm:text-5xl md:text-[80px] md:font-bold lg:text-4xl">
               Double Earnings and
               <span className="text-blue-500">
-                {" "}
-                Growth Community
+                &nbsp Growth Community
                 <br />
               </span>
               From Your Waste
