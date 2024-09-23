@@ -1,6 +1,6 @@
 import Show from "@/components/elements/show";
 import { createSupabaseServerClient } from "@/utils/supabase/server";
-import { Input } from "@nextui-org/input";
+import { Input, Textarea } from "@nextui-org/input";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 import { AUTH_TOKEN_COOKIE } from "@/utils/constant";
@@ -21,9 +21,20 @@ export default function SignUpPage({
   const signUp = async (formData: FormData) => {
     "use server";
 
+    const fullname = formData.get("fullname") as string;
+    const phone = formData.get("phone") as string;
+    const age = formData.get("umur") as unknown as number;
+    const address = formData.get("alamat") as string;
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
     const supabase = createSupabaseServerClient();
+
+    await supabase.from("users").insert({
+      fullname,
+      usia: age,
+      alamat: address,
+      phone,
+    });
 
     const { error } = await supabase.auth.signUp({
       email,
@@ -83,6 +94,60 @@ export default function SignUpPage({
                   <Input
                     isRequired
                     variant="bordered"
+                    description="Enter your fullname"
+                    id="fullname"
+                    name="fullname"
+                    type="text"
+                    label="Fullname"
+                    className="w-full"
+                  />
+                </div>
+                <div className="col-span-3">
+                  <Input
+                    isRequired
+                    variant="bordered"
+                    description="e.g., 0812xxxxxxxx"
+                    id="phone"
+                    name="phone"
+                    type="tel"
+                    inputMode="tel"
+                    label="Phone"
+                    labelPlacement="outside"
+                    className="w-full"
+                  />
+                </div>
+                <div className="col-span-3">
+                  <Input
+                    isRequired
+                    variant="bordered"
+                    description="Enter your age"
+                    id="umur"
+                    name="umur"
+                    type="number"
+                    inputMode="numeric"
+                    label="Umur"
+                    labelPlacement="outside"
+                    className="w-full"
+                  />
+                </div>
+                <div className="col-span-6">
+                  <Textarea
+                    isRequired
+                    variant="bordered"
+                    description="Enter your full address"
+                    id="alamat"
+                    name="alamat"
+                    type="text"
+                    label="Alamat"
+                    maxLength={150}
+                    inputMode="text"
+                    className="w-full"
+                  />
+                </div>
+                <div className="col-span-6">
+                  <Input
+                    isRequired
+                    variant="bordered"
                     description="Enter your email"
                     id="email"
                     name="email"
@@ -117,7 +182,7 @@ export default function SignUpPage({
                   </SubmitButton>
 
                   <p className="mt-4 text-sm text-gray-500 sm:mt-0">
-                    Already have an account?{" "}
+                    Already have an account?&nbsp
                     <a href="/login" className="text-gray-700 underline">
                       Log in
                     </a>

@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import ReactDOM from "react-dom";
 import BrandLogo from "../brand-logo";
 import Link from "next/link";
+import { BookOpen, Building, ShoppingCart, X } from "lucide-react";
 
 type Props = {
   isOpen: boolean;
@@ -32,14 +33,18 @@ const NavbarMobile = ({ isOpen, onClose }: Props) => {
       />
 
       {/* Sidebar */}
-      <div className="relative z-[120] h-full w-64 bg-white p-6 shadow-lg transition-transform">
+      <div
+        className={`fixed left-0 top-0 z-[120] h-full w-64 transform bg-white p-6 shadow-lg transition-transform duration-500 ease-in-out ${
+          isOpen ? "translate-x-0" : "-translate-x-full"
+        }`}
+      >
         {/* Close Button */}
         <button
           className="absolute right-4 top-4 font-bold text-black"
           onClick={onClose}
           aria-label="Close"
         >
-          &times;
+          <X className="h-5 w-5" />
         </button>
 
         {/* Brand Logo */}
@@ -53,24 +58,25 @@ const NavbarMobile = ({ isOpen, onClose }: Props) => {
             <li>
               <Link
                 href={"/shop"}
-                className="text-lg font-semibold text-gray-800 hover:text-gray-500"
+                className="flex items-center gap-x-3 text-lg font-semibold text-gray-800 hover:text-gray-500"
               >
-                Shop
+                <ShoppingCart className="h-5 w-5" /> Shop
               </Link>
             </li>
             <li>
               <Link
                 href={"/education"}
-                className="text-lg font-semibold text-gray-800 hover:text-gray-500"
+                className="flex items-center gap-x-3 text-lg font-semibold text-gray-800 hover:text-gray-500"
               >
-                Education
+                <BookOpen className="h-5 w-5" /> Education
               </Link>
             </li>
             <li>
               <Link
                 href={"/team"}
-                className="text-lg font-semibold text-gray-800 hover:text-gray-500"
+                className="flex items-center gap-x-3 text-lg font-semibold text-gray-800 hover:text-gray-500"
               >
+                <Building className="h-5 w-5" />
                 About Us
               </Link>
             </li>

@@ -78,8 +78,8 @@ const Faq = () => {
                 <rect fill="url(#232db96b-4aa2-422f-9086-5a77996d1df1)" width="52" height="24" />
               </svg>
               <span className="relative">The</span>
-            </span>{" "}
-            quick, brown fox jumps over a lazy dog
+            </span>
+            &nbsp quick, brown fox jumps over a lazy dog
           </h2>
           <p className="text-base text-gray-700 md:text-lg">
             Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
