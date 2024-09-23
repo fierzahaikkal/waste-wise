@@ -17,7 +17,7 @@ const Education = () => {
         </p>
       </div>
       <div className="row-gap-5 sm:row-gap-6 mb-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        <a href="/" aria-label="View Item">
+        <a href="/blog/a" aria-label="View Item">
           <div className="relative transform overflow-hidden rounded shadow-lg transition duration-200 hover:-translate-y-2 hover:shadow-2xl">
             <img
               className="h-56 w-full object-cover md:h-64 xl:h-80"
@@ -31,7 +31,7 @@ const Education = () => {
             </div>
           </div>
         </a>
-        <a href="/" aria-label="View Item">
+        <a href="/blog/b" aria-label="View Item">
           <div className="relative transform overflow-hidden rounded shadow-lg transition duration-200 hover:-translate-y-2 hover:shadow-2xl">
             <img
               className="h-56 w-full object-cover md:h-64 xl:h-80"
@@ -45,7 +45,7 @@ const Education = () => {
             </div>
           </div>
         </a>
-        <a href="/" aria-label="View Item">
+        <a href="/blog/c" aria-label="View Item">
           <div className="relative transform overflow-hidden rounded shadow-lg transition duration-200 hover:-translate-y-2 hover:shadow-2xl">
             <img
               className="h-56 w-full object-cover md:h-64 xl:h-80"
@@ -59,7 +59,7 @@ const Education = () => {
             </div>
           </div>
         </a>
-        <a href="/" aria-label="View Item">
+        <a href="/blog/d" aria-label="View Item">
           <div className="relative transform overflow-hidden rounded shadow-lg transition duration-200 hover:-translate-y-2 hover:shadow-2xl">
             <img
               className="h-56 w-full object-cover md:h-64 xl:h-80"
@@ -76,7 +76,7 @@ const Education = () => {
       </div>
       <div className="text-center">
         <a
-          href="/"
+          href="/education"
           aria-label=""
           className="text-deep-purple-accent-400 hover:text-deep-purple-800 inline-flex items-center font-semibold transition-colors duration-200"
         >
