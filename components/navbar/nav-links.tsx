@@ -22,12 +22,16 @@ const NavLinks = () => {
             Dashboard
           </li>
         </Link>
-        <li className="cursor-pointer font-normal transition-all hover:text-highland-300">
-          Services
-        </li>
-        <li className="cursor-pointer font-normal transition-all hover:text-highland-300">
-          Education
-        </li>
+        <Link href={"/education"}>
+          <li className="cursor-pointer font-normal transition-all hover:text-highland-300">
+            Education
+          </li>
+        </Link>
+        <Link href={"/team"}>
+          <li className="cursor-pointer font-normal transition-all hover:text-highland-300">
+            About Us
+          </li>
+        </Link>
         <li>
           <div className={cn("flex items-center gap-2")}>
             <AuthButtonClient />

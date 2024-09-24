@@ -23,5 +23,6 @@
 @layer base {
   * {
     @apply border-foreground/20;
+    @apply scroll-smooth;
   }
 }

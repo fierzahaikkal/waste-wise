@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import ReactDOM from "react-dom";
 import BrandLogo from "../brand-logo";
 import Link from "next/link";
-import { BookOpen, Building, ShoppingCart, X } from "lucide-react";
+import { BookOpen, Building, LayoutDashboard, ShoppingCart, X } from "lucide-react";
 
 type Props = {
   isOpen: boolean;
@@ -13,7 +13,8 @@ type Props = {
 };
 
 const NavbarMobile = ({ isOpen, onClose }: Props) => {
-  const { onLogout, isAuthenticated } = useAuth();
+  const { onLogout, isAuthenticated, user } = useAuth();
+  const role = user?.role;
   const router = useRouter();
   if (!isOpen) return null;
 
@@ -61,6 +62,14 @@ const NavbarMobile = ({ isOpen, onClose }: Props) => {
                 className="flex items-center gap-x-3 text-lg font-semibold text-gray-800 hover:text-gray-500"
               >
                 <ShoppingCart className="h-5 w-5" /> Shop
+              </Link>
+            </li>
+            <li>
+              <Link
+                href={`${role === "admin" ? "/dashboard" : "/user/dashboard"}`}
+                className="flex items-center gap-x-3 text-lg font-semibold text-gray-800 hover:text-gray-500"
+              >
+                <LayoutDashboard className="h-5 w-5" /> Dashboard
               </Link>
             </li>
             <li>
