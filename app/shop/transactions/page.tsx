@@ -9,7 +9,6 @@ import { formatRupiah } from "@/utils/format-rupiah";
 export default function OrderHistory() {
   const { user } = useAuth();
   const { data: orders } = useGetOrders(user?.authUserID as string);
-  console.log(orders);
 
   return (
     <div className="container mx-auto grid place-content-center px-10 py-16">

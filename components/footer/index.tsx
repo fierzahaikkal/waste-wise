@@ -1,24 +1,27 @@
 "use client";
 
-import React from "react";
-import { useMediaQuery } from "usehooks-ts";
-import FooterMobile from "./footer-mobile";
-import FooterDesktop from "./footer-desktop";
-import Show from "@elements/show";
+import React, { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
 
-const Footer = () => {
-  const mobile = useMediaQuery("(max-width: 1024px)");
+const FooterMobile = dynamic(() => import("./footer-mobile"), { ssr: false });
+const FooterDesktop = dynamic(() => import("./footer-desktop"), { ssr: false });
 
-  return (
-    <>
-      <Show when={mobile}>
-        <FooterMobile />
-      </Show>
-      <Show when={!mobile}>
-        <FooterDesktop />
-      </Show>
-    </>
-  );
+const Footer: React.FC = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 1024);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  // eslint-disable-next-line react/jsx-no-useless-fragment
+  return <>{isMobile ? <FooterMobile /> : <FooterDesktop />}</>;
 };
 
 export default Footer;

@@ -2,13 +2,17 @@
 
 "use client";
 
-import React, { useEffect, useState } from "react";
 import Modal from "@/components/modal";
 import { formatRupiah } from "@/utils/format-rupiah";
-import { createSupabaseClientWithTypes } from "@/utils/supabase/client";
-import { Edit, Plus, Trash2 } from "lucide-react";
-import { toast } from "react-toastify";
 import { getErrorMessage } from "@/utils/get-error-msg";
+import { createSupabaseClientWithTypes } from "@/utils/supabase/client";
+import { Table, TableBody, TableCell, TableColumn, TableHeader, TableRow } from "@nextui-org/table";
+import { Plus } from "lucide-react";
+import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import DeleteIcon from "./_components/delete-icon";
+import EditIcon from "./_components/edit-icons";
+import { Tooltip } from "@nextui-org/react";
 
 const supabase = createSupabaseClientWithTypes();
 
@@ -119,9 +123,9 @@ const ProductsPage = () => {
   };
 
   return (
-    <div className="min-h-screen px-4 py-8 font-sans text-[#3D405B]">
+    <div className="min-h-screen bg-gray-100 px-4 py-8 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-6xl">
-        <h1 className="mb-8 text-4xl font-light tracking-wide">Product Management</h1>
+        <h1 className="mb-6 text-3xl font-bold text-gray-900">Product Management</h1>
         <button
           className="mb-6 flex items-center rounded-full bg-highland-300 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-highland-400"
           onClick={() => {
@@ -132,41 +136,51 @@ const ProductsPage = () => {
           <Plus className="mr-2 h-4 w-4" /> Add New Product
         </button>
         <div className="overflow-x-scroll rounded-lg bg-white shadow-md">
-          <table className="w-full table-auto">
-            <thead className="bg-zinc-50 text-black">
-              <tr>
-                <th className="px-4 py-3 text-left text-sm font-medium">Name</th>
-                <th className="px-4 py-3 text-left text-sm font-medium">Description</th>
-                <th className="px-4 py-3 text-left text-sm font-medium">Price</th>
-                <th className="px-4 py-3 text-left text-sm font-medium">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {products.map((product, index) => (
-                <tr key={product.id} className={index % 2 === 0 ? "bg-[#fff2dd]" : "bg-white"}>
-                  <td className="px-4 py-3 text-sm">{product.name}</td>
-                  <td className="px-4 py-3 text-sm">{product.desc}</td>
-                  <td className="px-4 py-3 text-sm">{formatRupiah(product.price ?? 0)}</td>
-                  <td className="px-4 py-3">
+          <Table className="w-full table-auto" isStriped>
+            <TableHeader className="bg-zinc-50 text-black">
+              <TableColumn className="px-4 py-3 text-left text-sm font-medium">Name</TableColumn>
+              <TableColumn className="px-4 py-3 text-left text-sm font-medium">
+                Description
+              </TableColumn>
+              <TableColumn className="px-4 py-3 text-left text-sm font-medium">Price</TableColumn>
+              <TableColumn className="px-4 py-3 text-left text-sm font-medium">Actions</TableColumn>
+            </TableHeader>
+            <TableBody>
+              {products.map(product => (
+                <TableRow key={product.id}>
+                  <TableCell className="px-4 py-3 text-sm">{product.name}</TableCell>
+                  <TableCell className="px-4 py-3 text-sm">{product.desc}</TableCell>
+                  <TableCell className="px-4 py-3 text-sm">
+                    {formatRupiah(product.price ?? 0)}
+                  </TableCell>
+                  <TableCell className="px-4 py-3">
                     <div className="flex space-x-2">
                       <button
-                        className="rounded-full bg-[#81B29A] p-1 text-white transition-colors hover:bg-[#5F8977]"
+                        className="rounded-full p-1 transition-colors"
                         onClick={() => handleEdit(product)}
                       >
-                        <Edit size={16} />
+                        <Tooltip content="Edit Product">
+                          <span className="cursor-pointer text-lg text-default-400 active:opacity-50">
+                            <EditIcon />
+                          </span>
+                        </Tooltip>
                       </button>
                       <button
-                        className="rounded-full bg-[#E07A5F] p-1 text-white transition-colors hover:bg-[#C7694F]"
+                        className="rounded-full p-1 transition-colors"
                         onClick={() => handleDeleteClick(product.id)}
                       >
-                        <Trash2 size={16} />
+                        <Tooltip color="danger" content="Delete Product">
+                          <span className="cursor-pointer text-lg text-danger active:opacity-50">
+                            <DeleteIcon />
+                          </span>
+                        </Tooltip>
                       </button>
                     </div>
-                  </td>
-                </tr>
+                  </TableCell>
+                </TableRow>
               ))}
-            </tbody>
-          </table>
+            </TableBody>
+          </Table>
         </div>
       </div>
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>

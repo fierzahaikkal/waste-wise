@@ -79,7 +79,7 @@ const Faq = () => {
               </svg>
               <span className="relative">The</span>
             </span>
-            &nbsp quick, brown fox jumps over a lazy dog
+            &nbsp;quick, brown fox jumps over a lazy dog
           </h2>
           <p className="text-base text-gray-700 md:text-lg">
             Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
