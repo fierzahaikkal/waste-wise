@@ -45,9 +45,9 @@ export default function AuthButtonClient(props: Props) {
       <button
         onClick={signOut}
         className={cn(
-          `group rounded-md border border-gray-950 bg-white px-5 py-3 no-underline hover:border-red-300`,
+          `group rounded-md bg-slate-100 px-5 py-3 text-slate-600 no-underline hover:border-red-300`,
           {
-            "border-white bg-transparent font-light text-white": isSecondary,
+            "bg-transparent font-light text-white": isSecondary,
           }
         )}
       >
@@ -58,9 +58,9 @@ export default function AuthButtonClient(props: Props) {
     <Link
       href="/login"
       className={cn(
-        `group rounded-md border border-gray-950 bg-white px-5 py-3 no-underline hover:border-highland-500`,
+        `group rounded-md bg-slate-100 px-5 py-3 text-slate-600 no-underline hover:border-highland-500`,
         {
-          "border-white bg-transparent font-light text-white": isSecondary,
+          "bg-transparent font-light text-white": isSecondary,
         }
       )}
     >

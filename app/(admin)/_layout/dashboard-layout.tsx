@@ -7,6 +7,7 @@ import { SidebarContext } from "../_contexts/sidebar-context";
 import { NavbarWrapper } from "../_components/navbar/navbar";
 import { useLockedBody } from "@/hooks/use-locked-body";
 import { SidebarWrapper } from "../_components/sidebar/sidebar";
+import { AuthContextProvider } from "@/components/contexts/auth-context";
 
 interface Props {
   children: React.ReactNode;
@@ -21,16 +22,18 @@ export const Layout = ({ children }: Props) => {
   };
 
   return (
-    <SidebarContext.Provider
-      value={{
-        collapsed: sidebarOpen,
-        setCollapsed: handleToggleSidebar,
-      }}
-    >
-      <section className="flex">
-        <SidebarWrapper />
-        <NavbarWrapper>{children}</NavbarWrapper>
-      </section>
-    </SidebarContext.Provider>
+    <AuthContextProvider>
+      <SidebarContext.Provider
+        value={{
+          collapsed: sidebarOpen,
+          setCollapsed: handleToggleSidebar,
+        }}
+      >
+        <section className="flex">
+          <SidebarWrapper />
+          <NavbarWrapper>{children}</NavbarWrapper>
+        </section>
+      </SidebarContext.Provider>
+    </AuthContextProvider>
   );
 };

@@ -4,7 +4,7 @@ import { ADMIN_ID, AUTH_TOKEN_COOKIE } from "@/utils/constant";
 import { getErrorMessage } from "@/utils/get-error-msg";
 import { createSupabaseClient } from "@/utils/supabase/client";
 import { deleteCookie, getCookie } from "cookies-next";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React, { createContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
@@ -30,12 +30,18 @@ export const AuthContextProvider = ({ children }: { children: React.ReactNode })
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const router = useRouter();
+  const pathname = usePathname();
+  const excludePage = ["/", "/education"];
 
   useEffect(() => {
     const checkAuth = async () => {
       setIsLoading(true);
       try {
         const token = getCookie(AUTH_TOKEN_COOKIE);
+        if (excludePage.includes(pathname)) {
+          setIsAuthenticated(false);
+          return;
+        }
         if (!token) {
           setIsAuthenticated(false);
           router.replace("/login");

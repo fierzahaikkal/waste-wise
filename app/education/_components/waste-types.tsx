@@ -34,7 +34,9 @@ const wasteTypes = [
 const WasteTypes = () => {
   return (
     <SectionContainer>
-      <h2 className="text-3xl font-bold">There are many waste types</h2>
+      <h2 className="text-3xl font-bold" id="waste-types">
+        There are many waste types
+      </h2>
       <p className="mb-[80px] text-gray-600">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Error blanditiis nobis fuga nostrum
         alias magni quaerat doloribus quidem atque inventore?
