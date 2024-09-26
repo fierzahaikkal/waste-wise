@@ -17,7 +17,7 @@ const NavLinks = () => {
             Shop
           </li>
         </Link>
-        <Link href={`${role === "admin" ? "/dashboard" : "/user/dashboard"}`}>
+        <Link href={`${role === "master" ? "/dashboard" : "/user/dashboard"}`}>
           <li className="cursor-pointer font-normal transition-all hover:text-highland-300">
             Dashboard
           </li>

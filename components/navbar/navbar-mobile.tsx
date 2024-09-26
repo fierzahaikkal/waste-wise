@@ -66,7 +66,7 @@ const NavbarMobile = ({ isOpen, onClose }: Props) => {
             </li>
             <li>
               <Link
-                href={`${role === "admin" ? "/dashboard" : "/user/dashboard"}`}
+                href={`${role === "master" ? "/dashboard" : "/user/dashboard"}`}
                 className="flex items-center gap-x-3 text-lg font-semibold text-gray-800 hover:text-gray-500"
               >
                 <LayoutDashboard className="h-5 w-5" /> Dashboard
@@ -95,10 +95,10 @@ const NavbarMobile = ({ isOpen, onClose }: Props) => {
         {/* Login/Logout Button */}
         <div className="absolute bottom-8 left-0 w-full px-6">
           <button
-            onClick={isAuthenticated ? onLogout : onLogin}
+            onClick={user ? onLogout : onLogin}
             className="w-full rounded-md bg-highland-500 py-2 text-white hover:bg-highland-600"
           >
-            {isAuthenticated ? "Logout" : "Login"}
+            {user ? "Logout" : "Login"}
           </button>
         </div>
       </div>
