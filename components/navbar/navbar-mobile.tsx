@@ -13,7 +13,7 @@ type Props = {
 };
 
 const NavbarMobile = ({ isOpen, onClose }: Props) => {
-  const { onLogout, isAuthenticated, user } = useAuth();
+  const { onLogout, user } = useAuth();
   const role = user?.role;
   const router = useRouter();
   if (!isOpen) return null;
