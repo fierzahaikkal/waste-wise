@@ -5,7 +5,7 @@ slug: "community-support"
 author:
   name: "Admin Cat"
   picture: "https://images.unsplash.com/photo-1573865526739-10659fec78a5?q=80&w=1915&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-excerpt: "Learn how to build React components with accessibility in mind, ensuring your web applications are usable by everyone."
+excerpt: "Indonesia, sebagai negara dengan keanekaragaman hayati yang kaya, menghadapi berbagai tantangan lingkungan, termasuk deforestasi, pencemaran, dan perubahan iklim."
 coverImage: "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
 readingTime: 3
 tags: ["Community", "Support"]
