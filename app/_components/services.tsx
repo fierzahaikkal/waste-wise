@@ -8,7 +8,7 @@ const features = [
     alt: "",
     title: "Deposit",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam erat turpis, tempus eget nunc luctus, accumsan egestas libero. Ut aliquam gravida lectus, ut interdum augue scelerisque id.",
+      "Tempat di mana Anda dapat menyimpan dan melacak hasil penjualan sampah daur ulang Anda. Setiap sampah yang Anda kumpulkan dan jual akan otomatis ditambahkan ke tabungan digital Anda. Yuk cek sekarang!",
   },
   {
     id: 1,
@@ -16,15 +16,14 @@ const features = [
     alt: "",
     title: "AI",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam erat turpis, tempus eget nunc luctus, accumsan egestas libero. Ut aliquam gravida lectus, ut interdum augue scelerisque id.",
+      "Livechat berbasis AI membantu memudahkan anda untuk mencari tahu hal mengenai EcoSmart. Bisa tanya kapanpun loh!",
   },
   {
     id: 2,
     imageUrl: "/images/root-hero-images/feature-checkout.svg",
     alt: "",
-    title: "Trash",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam erat turpis, tempus eget nunc luctus, accumsan egestas libero. Ut aliquam gravida lectus, ut interdum augue scelerisque id.",
+    title: "Buy Recycle Product",
+    description: "Product daur ulang yang berkualitas  dapat anda temukan disini, cek sekarang!",
   },
   {
     id: 3,

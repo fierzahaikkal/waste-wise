@@ -31,14 +31,17 @@ export const AuthContextProvider = ({ children }: { children: React.ReactNode })
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const router = useRouter();
   const pathname = usePathname();
-  const excludePage = ["/", "/education"];
+  const excludePages = ["/", "/education", "/blog/", "/team"];
 
   useEffect(() => {
     const checkAuth = async () => {
       setIsLoading(true);
       try {
         const token = getCookie(AUTH_TOKEN_COOKIE);
-        if (excludePage.includes(pathname)) {
+        if (
+          excludePages.includes(pathname) ||
+          (pathname.startsWith("/blog/") && pathname.split("/").length === 3)
+        ) {
           setIsAuthenticated(false);
           return;
         }

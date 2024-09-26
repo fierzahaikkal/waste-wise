@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import SectionContainer from "@/components/section-container";
+import Link from "next/link";
 
 const Products = () => {
   const images = [
@@ -29,16 +30,16 @@ const Products = () => {
             <header>
               <h2 className="text-xl font-bold text-highland-900 sm:text-3xl">Recent Products</h2>
               <p className="mt-4 text-gray-500">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas rerum quam amet
-                provident nulla error!
+                Kami menjual produk berkualitas dari bahan daur ulang yang dihasilkan dari
+                tangan-tangan ajaib, sebagai upaya untuk mendukung ekonomi sirkular. Yuk beli!
               </p>
             </header>
-            <a
-              href="/"
+            <Link
+              href="/shop"
               className="mt-8 inline-block rounded border border-highland-900 bg-highland-900 px-12 py-3 text-sm font-medium text-white transition hover:shadow focus:outline-none focus:ring"
             >
               Lets Buy
-            </a>
+            </Link>
           </div>
         </div>
 

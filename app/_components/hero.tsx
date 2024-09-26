@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { BackgroundBeams } from "./bg-beams";
 
 export default function Hero() {
@@ -24,7 +25,7 @@ export default function Hero() {
           <button className="group relative z-[95] mt-6 p-[3px]">
             <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-green-300 to-yellow-400" />
             <div className="group relative rounded-[6px] bg-black px-8 py-2 text-white transition duration-200 hover:bg-transparent group-hover:text-black">
-              Lets join us!
+              <Link href={"/login"}>Lets join us!</Link>
             </div>
           </button>
         </div>

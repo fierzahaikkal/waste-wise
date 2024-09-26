@@ -42,40 +42,12 @@ const FooterDesktop = () => {
         <div>
           <h3 className="mb-4 text-lg font-bold text-[#749567]">About Us</h3>
           <p className="text-gray-400">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus luctus ante eget
-            magna ullamcorper placerat. Nam lobortis est at sapien suscipit porta. Donec vel felis
-            fringilla, dictum enim id, tincidunt orci. Donec interdum id nisi sed malesuada. Fusce
-            leo nulla, tincidunt nec laoreet at, vulputate nec nunc. Interdum et malesuada fames ac
-            ante ipsum primis in faucibus. Suspendisse potenti.
+            EcoSmart adalah platform bank sampah digital yang membantu Anda mengubah sampah rumah
+            tangga menjadi nilai ekonomis. Dengan layanan pengelolaan sampah yang efektif dan ramah
+            lingkungan, kami mendukung gaya hidup berkelanjutan. Daftar sekarang dan mulailah
+            berkontribusi untuk lingkungan lebih bersih dan masa depan hijau!
           </p>
         </div>
-
-        {/* Section 2 */}
-        {/* <div>
-          <h3 className="mb-4 text-lg font-bold text-[#749567]">Quick Links</h3>
-          <ul className="space-y-2">
-            <li>
-              <a href="/" className="hover:text-[#749567]">
-                Home
-              </a>
-            </li>
-            <li>
-              <a href="/" className="hover:text-[#749567]">
-                Services
-              </a>
-            </li>
-            <li>
-              <a href="/" className="hover:text-[#749567]">
-                Blog
-              </a>
-            </li>
-            <li>
-              <a href="/" className="hover:text-[#749567]">
-                Contact
-              </a>
-            </li>
-          </ul>
-        </div> */}
 
         {/* Section 3 */}
         <div className="place-content-center rounded-xl bg-[#292A32] px-8 py-6">
