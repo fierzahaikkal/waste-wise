@@ -42,11 +42,10 @@ const FooterMobile = () => {
         <div className="space-y-4">
           <SubTitle text="About Us" className="text-base font-medium" />
           <p className="text-gray-400">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus luctus ante eget
-            magna ullamcorper placerat. Nam lobortis est at sapien suscipit porta. Donec vel felis
-            fringilla, dictum enim id, tincidunt orci. Donec interdum id nisi sed malesuada. Fusce
-            leo nulla, tincidunt nec laoreet at, vulputate nec nunc. Interdum et malesuada fames ac
-            ante ipsum primis in faucibus. Suspendisse potenti.
+            EcoSmart adalah platform bank sampah digital yang membantu Anda mengubah sampah rumah
+            tangga menjadi nilai ekonomis. Dengan layanan pengelolaan sampah yang efektif dan ramah
+            lingkungan, kami mendukung gaya hidup berkelanjutan. Daftar sekarang dan mulailah
+            berkontribusi untuk lingkungan lebih bersih dan masa depan hijau!
           </p>
         </div>
         <form className="flex w-full flex-col items-center space-y-4 rounded-xl bg-[#292A32] px-6 py-10">
