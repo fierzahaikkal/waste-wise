@@ -8,9 +8,8 @@ import { redirect } from "next/navigation";
 import { SubmitButton } from "../submit-button";
 import GoogleAuthButton from "./_google-auth";
 
-const supabase = createSupabaseServerClient();
-
 export default function Login({ searchParams }: { searchParams: { message: string } }) {
+  const supabase = createSupabaseServerClient();
   const cookueStore = cookies();
   const token = cookueStore.get(AUTH_TOKEN_COOKIE);
   if (token) {
