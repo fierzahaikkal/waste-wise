@@ -1,12 +1,11 @@
 "use client";
 
-import { useState, useMemo } from "react";
-import { useGetCustomerOrders } from "../../_hooks/use-get-customer-orders";
+import { formatRupiah } from "@/utils/format-rupiah";
 import { createSupabaseClient } from "@/utils/supabase/client";
 import { Select, SelectItem } from "@nextui-org/select";
-import { formatRupiah } from "@/utils/format-rupiah";
-import { useRouter } from "next/navigation";
+import { useMemo, useState } from "react";
 import { toast } from "react-toastify";
+import { useGetCustomerOrders } from "../../_hooks/use-get-customer-orders";
 
 const orderStatuses = ["pending", "delivered", "shipped"] as const;
 
@@ -15,7 +14,6 @@ const supabase = createSupabaseClient();
 const CustomersOrderPage = () => {
   const { data: orders, isLoading, isError } = useGetCustomerOrders();
   const [updatingOrderId, setUpdatingOrderId] = useState<string | null>(null);
-  const router = useRouter();
 
   const handleStatusChange = async (orderId: string, newStatus: string) => {
     setUpdatingOrderId(orderId);
@@ -27,7 +25,7 @@ const CustomersOrderPage = () => {
     if (error) {
       toast.error(`Error updating status: ${error.message}}`);
     } else {
-      router.refresh();
+      window.location.reload();
     }
     setUpdatingOrderId(null);
   };
