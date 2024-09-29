@@ -211,6 +211,8 @@ const ProductForm: React.FC<ProductFormProps> = ({ product, onSave, onCancel }) 
     name: product?.name || "",
     desc: product?.desc || "",
     price: product?.price || 0,
+    img_url: product?.img_url || "",
+    quantity: product?.quantity || 0,
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -265,6 +267,38 @@ const ProductForm: React.FC<ProductFormProps> = ({ product, onSave, onCancel }) 
           id="price"
           name="price"
           value={formData.price ?? ""}
+          onChange={handleChange}
+          className="mt-1 block w-full rounded-md border-[#81B29A] bg-[#F4F1DE] px-3 py-2 text-[#3D405B] shadow-sm focus:border-[#81B29A] focus:outline-none focus:ring-1 focus:ring-[#81B29A]"
+          step="0.01"
+          min="0"
+          required
+        />
+      </div>
+      <div>
+        <label htmlFor="img_url" className="block text-sm font-medium text-[#3D405B]">
+          Image URL
+        </label>
+        <input
+          type="text"
+          id="img_url"
+          name="img_url"
+          value={formData.img_url ?? ""}
+          onChange={handleChange}
+          className="mt-1 block w-full rounded-md border-[#81B29A] bg-[#F4F1DE] px-3 py-2 text-[#3D405B] shadow-sm focus:border-[#81B29A] focus:outline-none focus:ring-1 focus:ring-[#81B29A]"
+          step="0.01"
+          min="0"
+          required
+        />
+      </div>
+      <div>
+        <label htmlFor="quantity" className="block text-sm font-medium text-[#3D405B]">
+          Quantity
+        </label>
+        <input
+          type="text"
+          id="quantity"
+          name="quantity"
+          value={formData.quantity ?? ""}
           onChange={handleChange}
           className="mt-1 block w-full rounded-md border-[#81B29A] bg-[#F4F1DE] px-3 py-2 text-[#3D405B] shadow-sm focus:border-[#81B29A] focus:outline-none focus:ring-1 focus:ring-[#81B29A]"
           step="0.01"

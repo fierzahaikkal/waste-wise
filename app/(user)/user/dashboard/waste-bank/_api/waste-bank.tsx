@@ -17,6 +17,7 @@ export type WasteFormPayload = {
   rincian_sampah: string;
   user_id: string;
   jenis_sampah_id: string;
+  img_url: string;
 };
 
 export const getStoredWaste = async (userId: string) => {

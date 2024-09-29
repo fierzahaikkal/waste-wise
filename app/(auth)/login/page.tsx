@@ -1,11 +1,14 @@
 import Show from "@/components/elements/show";
+import { AUTH_TOKEN_COOKIE } from "@/utils/constant";
 import { createSupabaseServerClient } from "@/utils/supabase/server";
 import { Input } from "@nextui-org/input";
+import { cookies } from "next/headers";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import { SubmitButton } from "../submit-button";
-import { cookies } from "next/headers";
-import { AUTH_TOKEN_COOKIE } from "@/utils/constant";
-import Link from "next/link";
+import GoogleAuthButton from "./_google-auth";
+
+const supabase = createSupabaseServerClient();
 
 export default function Login({ searchParams }: { searchParams: { message: string } }) {
   const cookueStore = cookies();
@@ -19,7 +22,6 @@ export default function Login({ searchParams }: { searchParams: { message: strin
 
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
-    const supabase = createSupabaseServerClient();
 
     const { error } = await supabase.auth.signInWithPassword({
       email,
@@ -146,6 +148,12 @@ export default function Login({ searchParams }: { searchParams: { message: strin
                     Sign up
                   </Link>
                 </p>
+              </div>
+              <div className="col-span-6 flex w-full items-center justify-center px-8 text-center">
+                <p>or sign in with</p>
+              </div>
+              <div className="col-span-6 flex w-full items-center justify-center px-8 text-center">
+                <GoogleAuthButton />
               </div>
             </form>
           </div>

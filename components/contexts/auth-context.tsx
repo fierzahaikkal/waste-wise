@@ -1,6 +1,6 @@
 "use client";
 
-import { ADMIN_ID, AUTH_TOKEN_COOKIE } from "@/utils/constant";
+import { ADMIN_ID, AUTH_TOKEN_COOKIE, GOOGLE_USER_ID } from "@/utils/constant";
 import { getErrorMessage } from "@/utils/get-error-msg";
 import { createSupabaseClient } from "@/utils/supabase/client";
 import { deleteCookie, getCookie } from "cookies-next";
@@ -13,6 +13,7 @@ type User = {
   authUserID: string;
   role: string;
   publicUserID: string;
+  sid: string;
 };
 
 type AuthContextType = {
@@ -38,6 +39,7 @@ export const AuthContextProvider = ({ children }: { children: React.ReactNode })
       setIsLoading(true);
       try {
         const token = getCookie(AUTH_TOKEN_COOKIE);
+        const sid = getCookie(GOOGLE_USER_ID);
         if (
           excludePages.includes(pathname) ||
           (pathname.startsWith("/blog/") && pathname.split("/").length === 3)
@@ -45,7 +47,7 @@ export const AuthContextProvider = ({ children }: { children: React.ReactNode })
           setIsAuthenticated(false);
           return;
         }
-        if (!token) {
+        if (!token && !sid) {
           setIsAuthenticated(false);
           router.replace("/login");
           return;
@@ -85,6 +87,7 @@ export const AuthContextProvider = ({ children }: { children: React.ReactNode })
           authUserID: data.user.id,
           role: adminData.length > 0 ? "admin" : "user",
           publicUserID: publicUserData[0].id,
+          sid: sid as string,
         });
         setIsAuthenticated(true);
       } catch (error) {

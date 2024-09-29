@@ -32,11 +32,6 @@ const ShopPage = async () => {
             Discover our wide range of recycled products.
           </p>
         </header>
-        <div className="mt-8">
-          <p className="text-sm text-gray-500">
-            Showing <span> 4 </span> of 4
-          </p>
-        </div>
         <ul className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {products.map(product => (
             <ProductCard
