@@ -8,21 +8,37 @@ import { useRouter } from "next/navigation";
 const DashboardPage = ({ children }: { children: React.ReactNode }) => {
   const { user, isLoading } = useAuth();
   const router = useRouter();
-  const [isAuthorized, setIsAuthorized] = useState<boolean | null>(null);
+  const [authState, setAuthState] = useState<"loading" | "authorized" | "unauthorized">("loading");
 
   useEffect(() => {
+    let timeoutId: ReturnType<typeof setTimeout>;
+
     if (!isLoading) {
-      if (user?.role === "admin") {
-        setIsAuthorized(true);
+      if (user?.role === undefined) {
+        // Wait a bit for the role to be fetched
+        timeoutId = setTimeout(() => {
+          if (user?.role === undefined) {
+            console.error("User role is undefined after timeout");
+            setAuthState("unauthorized");
+            router.push("/");
+          }
+        }, 2000); // Adjust this timeout as needed
+      } else if (user.role === "admin" || user.role === "master") {
+        setAuthState("authorized");
       } else {
-        setIsAuthorized(false);
+        setAuthState("unauthorized");
         router.push("/");
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user?.role, isLoading]);
 
-  if (isLoading || isAuthorized === null) {
+    return () => {
+      if (timeoutId) clearTimeout(timeoutId);
+    };
+  }, [user, isLoading, router]);
+
+  useEffect(() => {}, [user?.role]);
+
+  if (authState === "loading") {
     return (
       <div className="flex h-screen items-center justify-center">
         <div className="h-20 w-20 animate-ping rounded-full bg-highland-400" />
@@ -30,7 +46,7 @@ const DashboardPage = ({ children }: { children: React.ReactNode }) => {
     );
   }
 
-  return isAuthorized ? <Layout>{children}</Layout> : null;
+  return authState === "authorized" ? <Layout>{children}</Layout> : null;
 };
 
 export default DashboardPage;

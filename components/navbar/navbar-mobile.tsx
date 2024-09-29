@@ -1,26 +1,21 @@
 "use client";
 
-import useAuth from "@/hooks/use-auth";
-import { useRouter } from "next/navigation";
 import ReactDOM from "react-dom";
 import BrandLogo from "../brand-logo";
 import Link from "next/link";
 import { BookOpen, Building, LayoutDashboard, ShoppingCart, X } from "lucide-react";
+import AuthButtonClient from "../auth-button/auth-button.client";
+import { User } from "@supabase/supabase-js";
 
 type Props = {
   isOpen: boolean;
   onClose: () => void;
+  user: User | null;
 };
 
-const NavbarMobile = ({ isOpen, onClose }: Props) => {
-  const { onLogout, user } = useAuth();
+const NavbarMobile = ({ isOpen, onClose, user }: Props) => {
   const role = user?.role;
-  const router = useRouter();
   if (!isOpen) return null;
-
-  const onLogin = () => {
-    return router.push("/login");
-  };
 
   return ReactDOM.createPortal(
     <div className="fixed inset-0 z-[120] flex">
@@ -61,7 +56,7 @@ const NavbarMobile = ({ isOpen, onClose }: Props) => {
                 href={"/shop"}
                 className="flex items-center gap-x-3 text-lg font-semibold text-gray-800 hover:text-gray-500"
               >
-                <ShoppingCart className="h-5 w-5" /> Shop
+                <ShoppingCart className="h-5 w-5" /> Toko
               </Link>
             </li>
             <li>
@@ -77,7 +72,7 @@ const NavbarMobile = ({ isOpen, onClose }: Props) => {
                 href={"/education"}
                 className="flex items-center gap-x-3 text-lg font-semibold text-gray-800 hover:text-gray-500"
               >
-                <BookOpen className="h-5 w-5" /> Education
+                <BookOpen className="h-5 w-5" /> Edukasi
               </Link>
             </li>
             <li>
@@ -86,7 +81,7 @@ const NavbarMobile = ({ isOpen, onClose }: Props) => {
                 className="flex items-center gap-x-3 text-lg font-semibold text-gray-800 hover:text-gray-500"
               >
                 <Building className="h-5 w-5" />
-                About Us
+                Tentang Kami
               </Link>
             </li>
           </ul>
@@ -94,12 +89,7 @@ const NavbarMobile = ({ isOpen, onClose }: Props) => {
 
         {/* Login/Logout Button */}
         <div className="absolute bottom-8 left-0 w-full px-6">
-          <button
-            onClick={user ? onLogout : onLogin}
-            className="w-full rounded-md bg-highland-500 py-2 text-white hover:bg-highland-600"
-          >
-            {user ? "Logout" : "Login"}
-          </button>
+          <AuthButtonClient />
         </div>
       </div>
     </div>,

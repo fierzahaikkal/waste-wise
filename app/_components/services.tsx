@@ -6,15 +6,15 @@ const features = [
     id: 0,
     imageUrl: "/images/root-hero-images/feature-deposit.svg",
     alt: "",
-    title: "Deposit",
+    title: "Mari setorkan sampahmu disini!",
     description:
       "Tempat di mana Anda dapat menyimpan dan melacak hasil penjualan sampah daur ulang Anda. Setiap sampah yang Anda kumpulkan dan jual akan otomatis ditambahkan ke tabungan digital Anda. Yuk cek sekarang!",
   },
   {
     id: 1,
-    imageUrl: "/images/root-hero-images/feature-earning-tracker.svg",
+    imageUrl: "    /images/root-hero-images/feature-ai.svg",
     alt: "",
-    title: "AI",
+    title: "Gunakan AI chat kami untuk kemudahanmu!",
     description:
       "Livechat berbasis AI membantu memudahkan anda untuk mencari tahu hal mengenai EcoSmart. Bisa tanya kapanpun loh!",
   },
@@ -22,16 +22,16 @@ const features = [
     id: 2,
     imageUrl: "/images/root-hero-images/feature-checkout.svg",
     alt: "",
-    title: "Buy Recycle Product",
+    title: "Ayo beli produk daur ulang kami!",
     description: "Product daur ulang yang berkualitas  dapat anda temukan disini, cek sekarang!",
   },
   {
     id: 3,
-    imageUrl: "/images/root-hero-images/feature-ai.svg",
+    imageUrl: "/images/root-hero-images/feature-earning-tracker.svg",
     alt: "",
-    title: "Payment",
+    title: "Ga perlu ribet cukup bayar disini!",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam erat turpis, tempus eget nunc luctus, accumsan egestas libero. Ut aliquam gravida lectus, ut interdum augue scelerisque id.",
+      "Untuk membeli produk daur ulang, kami menyediakan sistem pembayaran sehinnga kamu ga perlu ribet untuk membeli dan membayarnya.",
   },
 ];
 
@@ -44,23 +44,21 @@ const Services = () => {
       >
         <div className="mx-auto max-w-lg text-center lg:mx-0 ltr:lg:text-left rtl:lg:text-right">
           <h2 className="text-3xl font-bold sm:text-4xl">
-            Find your right&nbsp;
+            Temukan layanan yang kamu&nbsp;
             <span className="mb-5 mt-3 inline-block rounded-full bg-highland-200 px-6 py-2">
-              services
+              butuhkan
             </span>
           </h2>
 
           <p className="mt-4 text-gray-600">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut vero aliquid sint
-            distinctio iure ipsum cupiditate? Quis, odit assumenda? Deleniti quasi inventore, libero
-            reiciendis minima aliquid tempora. Obcaecati, autem.
+            Temukan secara mendalam berbagai fitur unggulan yang kami tawarkan!
           </p>
 
           <Link
-            href="/education"
+            href="/login"
             className="mt-8 inline-block rounded-xl border-2 border-highland-600 px-12 py-3 text-sm font-medium text-black transition duration-700 ease-in-out hover:bg-highland-700 hover:text-white focus:outline-none"
           >
-            Get Started Today
+            Mari Memulai Sekarang
           </Link>
         </div>
 
@@ -86,7 +84,7 @@ const Services = () => {
 
               <h2 className="mt-2 font-bold">{feature.title}</h2>
 
-              <p className="hidden sm:mt-1 sm:block sm:text-sm sm:text-gray-600">
+              <p className="hidden text-justify sm:mt-1 sm:block sm:text-sm sm:text-gray-600">
                 {feature.description}
               </p>
             </Link>

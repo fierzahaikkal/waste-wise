@@ -4,8 +4,11 @@ import Socials from "./socials";
 import SubTitle from "@/app/_components/subtitle";
 import { Input } from "@nextui-org/input";
 import { Button } from "@nextui-org/button";
+import useAuth from "@/hooks/use-auth";
 
 const FooterMobile = () => {
+  const { user } = useAuth();
+  const role = user?.role;
   return (
     <footer className="mx-auto w-[90%] rounded-tl-xl rounded-tr-xl bg-[#191A23] px-6 py-10 text-white">
       {/* top */}
@@ -15,21 +18,27 @@ const FooterMobile = () => {
         <nav className="flex flex-col items-center space-y-3">
           <Link
             className="font-light underline transition-all hover:text-highland-300"
-            href={"/services"}
+            href={"/shop"}
           >
-            Services
+            Toko
+          </Link>
+          <Link
+            className="font-light underline transition-all hover:text-highland-300"
+            href={`${role === "admin" ? "/dashboard" : "/user/dashboard"}`}
+          >
+            Dashboar
           </Link>
           <Link
             className="font-light underline transition-all hover:text-highland-300"
             href={"/education"}
           >
-            Education
+            Edukasi
           </Link>
           <Link
             className="font-light underline transition-all hover:text-highland-300"
-            href={"/about"}
+            href={"/team"}
           >
-            About us
+            Tentang Kami
           </Link>
         </nav>
         {/* social */}
@@ -40,9 +49,9 @@ const FooterMobile = () => {
       {/* mid */}
       <div className="flex flex-col items-center space-y-6">
         <div className="space-y-4">
-          <SubTitle text="About Us" className="text-base font-medium" />
+          <SubTitle text="Tentang Kami" className="text-base font-medium" />
           <p className="text-gray-400">
-            EcoSmart adalah platform bank sampah digital yang membantu Anda mengubah sampah rumah
+            WasteWise adalah platform bank sampah digital yang membantu Anda mengubah sampah rumah
             tangga menjadi nilai ekonomis. Dengan layanan pengelolaan sampah yang efektif dan ramah
             lingkungan, kami mendukung gaya hidup berkelanjutan. Daftar sekarang dan mulailah
             berkontribusi untuk lingkungan lebih bersih dan masa depan hijau!

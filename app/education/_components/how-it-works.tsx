@@ -4,21 +4,27 @@ const steps = [
   {
     id: 0,
     steps: "01",
-    title: "Trashcan",
-    desc: "Lorem ipsum dolor sit amet consectetur. Gravida id risus nibh sed. Blandit faucibus sed amet elementum at. Vehicula aliquet fermentum varius id purus ut adipiscing tellus. Gravida etiam morbi tristique faucibus pellentesque eleifend commodo curabitur.",
+    title: "Tempat Sampah",
+    desc: "Tempat pertama di mana perjalanan sampah dimulai adalah tempat sampah di rumah Anda. Memilah sampah dengan benar, seperti memisahkan plastik, organik, dan sampah lainnya, menjadi langkah awal penting. Ini membantu bank sampah dalam mengelola dan memproses sampah dengan lebih efisien.",
   },
   {
     id: 1,
     steps: "02",
-    title: "Garbage Truck",
-    desc: "Lorem ipsum dolor sit amet consectetur. Gravida id risus nibh sed. Blandit faucibus sed amet elementum at. Vehicula aliquet fermentum varius id purus ut adipiscing tellus. Gravida etiam morbi tristique faucibus pellentesque eleifend commodo curabitur.",
+    title: "Truk Sampah",
+    desc: "Sampah yang sudah dipilah akan diangkut oleh truk menuju bank sampah. Di sinilah peran penting transportasi dalam memastikan sampah yang terkumpul dapat didistribusikan ke tempat yang tepat, baik untuk daur ulang maupun untuk diproses lebih lanjut.",
   },
 
   {
     id: 2,
     steps: "03",
-    title: "Landfill",
-    desc: "Lorem ipsum dolor sit amet consectetur. Gravida id risus nibh sed. Blandit faucibus sed amet elementum at. Vehicula aliquet fermentum varius id purus ut adipiscing tellus. Gravida etiam morbi tristique faucibus pellentesque eleifend commodo curabitur.",
+    title: "Tempang Pembuangan Akhir (TPA)",
+    desc: "Sebagian kecil sampah yang tidak dapat didaur ulang akan berakhir di TPA. Namun, dengan pemilahan yang baik sejak awal, volume sampah yang dikirim ke TPA dapat diminimalisir. Bank sampah memainkan peran utama dalam mengurangi jumlah sampah yang berakhir di TPA.",
+  },
+  {
+    id: 3,
+    steps: "04",
+    title: "Daur Ulang",
+    desc: "Di tahap akhir, sampah yang bisa didaur ulang seperti plastik, kaca, dan logam diproses untuk dijadikan bahan baku baru. Hasil dari proses ini bukan hanya mengurangi sampah, tetapi juga memberi nilai ekonomi tambahan bagi masyarakat. Dengan daur ulang, kita berkontribusi untuk lingkungan yang lebih baik dan ekonomi yang lebih berkelanjutan.",
   },
 ];
 
@@ -69,7 +75,7 @@ const HowItWorks = () => {
         <div className="relative">
           <img
             className="inset-0 h-96 w-full rounded object-cover object-bottom shadow-lg lg:absolute lg:h-full"
-            src="https://images.pexels.com/photos/3184287/pexels-photo-3184287.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
+            src="https://images.unsplash.com/photo-1682668373702-10e0eb560e44?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             alt=""
           />
         </div>

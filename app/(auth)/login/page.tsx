@@ -45,7 +45,7 @@ export default function Login({ searchParams }: { searchParams: { message: strin
           />
 
           <div className="hidden lg:relative lg:block lg:p-12">
-            <a className="block text-white" href="/login">
+            <a className="block text-white" href="/">
               <span className="sr-only">Home</span>
               <svg
                 className="h-8 sm:h-10"
@@ -61,7 +61,7 @@ export default function Login({ searchParams }: { searchParams: { message: strin
             </a>
 
             <h2 className="mt-6 text-2xl font-bold text-white sm:text-3xl md:text-4xl">
-              Welcome to WasteWise
+              Selamat Datang di WasteWise
             </h2>
 
             <p className="mt-4 leading-relaxed text-white/90">
@@ -74,9 +74,9 @@ export default function Login({ searchParams }: { searchParams: { message: strin
         <main className="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
           <div className="max-w-xl lg:max-w-3xl">
             <div className="relative -mt-16 block lg:hidden">
-              <a
+              <Link
                 className="inline-flex size-16 items-center justify-center rounded-full bg-white text-highland-600 sm:size-20"
-                href="/login"
+                href="/"
               >
                 <span className="sr-only">Home</span>
                 <svg
@@ -90,10 +90,10 @@ export default function Login({ searchParams }: { searchParams: { message: strin
                     fill="currentColor"
                   />
                 </svg>
-              </a>
+              </Link>
 
               <h1 className="mt-2 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">
-                Hi welcome back!
+                Hi Selamat Datang!
               </h1>
             </div>
             <p className="mt-4 leading-relaxed text-gray-500">
@@ -106,7 +106,7 @@ export default function Login({ searchParams }: { searchParams: { message: strin
                 <Input
                   isRequired
                   variant="bordered"
-                  description="Enter your email"
+                  description="Masukkan email terdaftarmu"
                   id="email"
                   name="email"
                   type="email"
@@ -119,7 +119,7 @@ export default function Login({ searchParams }: { searchParams: { message: strin
                 <Input
                   isRequired
                   variant="bordered"
-                  description="Fill the blank with your password"
+                  description="Isikan dengan password yang terdaftar"
                   id="password"
                   name="password"
                   type="password"
@@ -130,24 +130,24 @@ export default function Login({ searchParams }: { searchParams: { message: strin
               <Show when={!!searchParams?.message}>
                 <p className="col-span-6 mt-4 text-danger-500">{searchParams.message}</p>
               </Show>
-              <div className="col-span-6 sm:col-span-3 sm:flex sm:items-center sm:gap-4">
+              <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
                 <SubmitButton
                   className="inline-block w-full shrink-0 rounded-md border border-highland-600 bg-highland-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-highland-600 focus:outline-none focus:ring active:text-highland-500"
                   pendingText="Sign In..."
                   type="submit"
                 >
-                  Sign In
+                  Masuk
                 </SubmitButton>
               </div>
-              <div className="col-span-6 px-8 text-center sm:col-span-3">
+              {/* <div className="col-span-6 px-8 text-center sm:col-span-3">
                 <p className="text-sm text-gray-600">
-                  Don&apos;t have an account
+                  Tidak memiliki akun?
                   <br />
                   <Link href="/signup" className="text-sage-600 hover:text-sage-800 font-medium">
-                    Sign up
+                    Daftarkan dirimu
                   </Link>
                 </p>
-              </div>
+              </div> */}
               <div className="col-span-6 flex w-full items-center justify-center px-8 text-center">
                 <p>or sign in with</p>
               </div>
