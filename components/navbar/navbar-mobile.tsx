@@ -61,7 +61,7 @@ const NavbarMobile = ({ isOpen, onClose, user }: Props) => {
             </li>
             <li>
               <Link
-                href={`${role === "master" ? "/dashboard" : "/user/dashboard"}`}
+                href={`${role === "master" || role === "admin" ? "/dashboard/waste-bank" : "/user/dashboard/waste-bank"}`}
                 className="flex items-center gap-x-3 text-lg font-semibold text-gray-800 hover:text-gray-500"
               >
                 <LayoutDashboard className="h-5 w-5" /> Dashboard
