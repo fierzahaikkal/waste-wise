@@ -94,11 +94,11 @@ export default function SignUpPage({
                   <Input
                     isRequired
                     variant="bordered"
-                    description="Enter your fullname"
+                    description="Isikan dengan nama lengkap ya"
                     id="fullname"
                     name="fullname"
                     type="text"
-                    label="Fullname"
+                    label="Nama Lengkap"
                     className="w-full"
                   />
                 </div>
@@ -106,12 +106,12 @@ export default function SignUpPage({
                   <Input
                     isRequired
                     variant="bordered"
-                    description="e.g., 0812xxxxxxxx"
+                    description="Isikan dengan format 0812xxxxxxxx"
                     id="phone"
                     name="phone"
                     type="tel"
                     inputMode="tel"
-                    label="Phone"
+                    label="Nomor Telephone"
                     labelPlacement="outside"
                     className="w-full"
                   />
@@ -120,12 +120,14 @@ export default function SignUpPage({
                   <Input
                     isRequired
                     variant="bordered"
-                    description="Enter your age"
+                    description="Masukkan umur kamu! Min. 19 Tahun"
                     id="umur"
                     name="umur"
                     type="number"
                     inputMode="numeric"
                     label="Umur"
+                    defaultValue="19"
+                    min={19}
                     labelPlacement="outside"
                     className="w-full"
                   />
@@ -134,7 +136,7 @@ export default function SignUpPage({
                   <Textarea
                     isRequired
                     variant="bordered"
-                    description="Enter your full address"
+                    description="Tulis alamat lengkap kamu yah!"
                     id="alamat"
                     name="alamat"
                     type="text"
@@ -148,7 +150,7 @@ export default function SignUpPage({
                   <Input
                     isRequired
                     variant="bordered"
-                    description="Enter your email"
+                    description="Masukkan email yang kamu gunakan"
                     id="email"
                     name="email"
                     type="email"
@@ -161,7 +163,7 @@ export default function SignUpPage({
                   <Input
                     isRequired
                     variant="bordered"
-                    description="Fill the blank with your password"
+                    description="Isikan dengan password yang diinginkan"
                     id="password"
                     name="password"
                     type="password"
@@ -178,13 +180,13 @@ export default function SignUpPage({
                     pendingText="Create an account..."
                     type="submit"
                   >
-                    Create an account
+                    Buat Akun
                   </SubmitButton>
 
                   <p className="mt-4 text-sm text-gray-500 sm:mt-0">
-                    Already have an account?&nbsp;
+                    Sudah punya akun?&nbsp;Stashed changes
                     <a href="/login" className="text-gray-700 underline">
-                      Log in
+                      Yuk Masuk
                     </a>
                     .
                   </p>

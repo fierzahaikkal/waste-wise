@@ -33,36 +33,36 @@
   }
 
   .markdown-content h2 {
-    @apply mb-3 mt-6 text-3xl font-semibold;
+    @apply mb-3 mt-6 text-3xl font-semibold text-gray-800;
   }
 
   .markdown-content h3 {
-    @apply mb-2 mt-5 text-2xl font-medium;
+    @apply mb-2 mt-5 text-2xl font-medium text-gray-700;
   }
 
   .markdown-content h4 {
-    @apply mb-2 mt-4 text-xl font-medium;
+    @apply mb-2 mt-4 text-xl font-medium text-gray-700;
   }
 
   .markdown-content h5 {
-    @apply mb-1 mt-3 text-lg font-medium;
+    @apply mb-1 mt-3 text-lg font-medium text-gray-700;
   }
 
   .markdown-content h6 {
-    @apply mb-1 mt-2 text-base font-medium;
+    @apply mb-1 mt-2 text-base font-medium text-gray-700;
   }
 
   .markdown-content p {
-    @apply my-4;
+    @apply my-4 text-justify text-gray-600;
   }
 
   .markdown-content ul,
   .markdown-content ol {
-    @apply my-4 ml-6;
+    @apply my-4 ml-6 text-justify text-gray-600;
   }
 
   .markdown-content li {
-    @apply mb-2;
+    @apply mb-2 text-justify text-gray-600;
   }
 
   .markdown-content a {

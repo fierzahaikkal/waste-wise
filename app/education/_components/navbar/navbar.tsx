@@ -14,7 +14,7 @@ const NavBarDesktop = () => {
         <ul className="flex items-center gap-4">
           <Link href={"/shop"}>
             <li className="cursor-pointer font-normal text-white transition-all hover:text-highland-300">
-              Shop
+              Toko
             </li>
           </Link>
           <Link href={`${role === "admin" ? "/dashboard" : "/user/dashboard"}`}>
@@ -24,12 +24,12 @@ const NavBarDesktop = () => {
           </Link>
           <Link href={"/education"}>
             <li className="cursor-pointer font-normal text-white transition-all hover:text-highland-300">
-              Education
+              Edukasi
             </li>
           </Link>
           <Link href={"/team"}>
             <li className="cursor-pointer font-normal text-white transition-all hover:text-highland-300">
-              About Us
+              Tentang Kami
             </li>
           </Link>
           <li>

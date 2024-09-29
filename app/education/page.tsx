@@ -4,6 +4,7 @@ import HowItWorks from "./_components/how-it-works";
 import Footer from "@/components/footer";
 import Navbar from "./_components/navbar";
 import CtaWorks from "./_components/cta-how-to-works";
+import EducationArticle from "./_components/education-article";
 
 const EduPage = () => {
   return (
@@ -16,6 +17,7 @@ const EduPage = () => {
         <WasteTypes />
         <CtaWorks />
         <HowItWorks />
+        <EducationArticle />
         <Footer />
       </div>
     </section>

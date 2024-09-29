@@ -1,26 +1,52 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SectionContainer from "@/components/section-container";
 import Link from "next/link";
+import { getErrorMessage } from "@/utils/get-error-msg";
+import { createSupabaseClient } from "@/utils/supabase/client";
+import Image from "next/image";
+import { ProductDetailProps } from "../shop/_components/product-detail";
 
 const Products = () => {
-  const images = [
-    "https://images.unsplash.com/photo-1677753727712-c79ce4c420c1?q=80&w=1988&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "https://images.unsplash.com/photo-1696739696228-eee49592ff07?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "https://images.unsplash.com/photo-1621846323386-a60faf26f962?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&",
-    "https://images.unsplash.com/photo-1500388953054-0d94398c7bf1?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  ];
-
+  const [products, setProducts] = useState<ProductDetailProps[]>([]);
+  const [error, setError] = useState<string | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const supabase = createSupabaseClient();
+      try {
+        const { data, error } = await supabase.from("products").select("*").limit(4); // Fetch the 4 newest products
+
+        if (error) {
+          setError(getErrorMessage(error));
+        } else {
+          setProducts(data || []);
+        }
+      } catch (error) {
+        setError(getErrorMessage(error));
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
   const handleNext = () => {
-    setCurrentIndex(prevIndex => (prevIndex + 2 < images.length ? prevIndex + 2 : 0));
+    setCurrentIndex(prevIndex => (prevIndex + 2 < products.length ? prevIndex + 2 : 0));
   };
 
   const handlePrev = () => {
-    setCurrentIndex(prevIndex => (prevIndex - 2 >= 0 ? prevIndex - 2 : images.length - 2));
+    setCurrentIndex(prevIndex => (prevIndex - 2 >= 0 ? prevIndex - 2 : products.length - 2));
   };
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
+  if (!products.length) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <SectionContainer>
@@ -28,7 +54,7 @@ const Products = () => {
         <div className="grid place-content-center rounded-xl bg-highland-100 p-6 sm:p-8">
           <div className="mx-auto max-w-md text-center lg:text-left">
             <header>
-              <h2 className="text-xl font-bold text-highland-900 sm:text-3xl">Recent Products</h2>
+              <h2 className="text-xl font-bold text-highland-900 sm:text-3xl">Produk Terbaru</h2>
               <p className="mt-4 text-gray-500">
                 Kami menjual produk berkualitas dari bahan daur ulang yang dihasilkan dari
                 tangan-tangan ajaib, sebagai upaya untuk mendukung ekonomi sirkular. Yuk beli!
@@ -38,7 +64,7 @@ const Products = () => {
               href="/shop"
               className="mt-8 inline-block rounded border border-highland-900 bg-highland-900 px-12 py-3 text-sm font-medium text-white transition hover:shadow focus:outline-none focus:ring"
             >
-              Lets Buy
+              Ayo Beli!
             </Link>
           </div>
         </div>
@@ -47,14 +73,18 @@ const Products = () => {
           <div id="controls-carousel" className="relative w-full" data-carousel="static">
             <div className="relative overflow-hidden rounded-lg">
               <div className="grid grid-cols-2 gap-4">
-                {images.slice(currentIndex, currentIndex + 2).map((src, index) => (
+                {products.slice(currentIndex, currentIndex + 2).map(product => (
                   /* eslint-disable react/no-array-index-key */
-                  <img
-                    key={index}
-                    src={src}
-                    className="block h-56 w-full object-cover md:h-96"
-                    alt={`Slide ${index}`}
-                  />
+                  <Link href={`/shop/${product.id}`}>
+                    <Image
+                      width={400}
+                      height={400}
+                      key={product.id}
+                      src={product.img_url}
+                      className="block h-56 w-full object-cover md:h-96"
+                      alt={product.name}
+                    />
+                  </Link>
                 ))}
               </div>
             </div>
@@ -78,7 +108,7 @@ const Products = () => {
                     d="M5 1L1 5l4 4"
                   />
                 </svg>
-                <span className="sr-only">Previous</span>
+                <span className="sr-only">Sebelumnya</span>
               </span>
             </button>
 
@@ -101,7 +131,7 @@ const Products = () => {
                     d="M1 9l4-4L1 1"
                   />
                 </svg>
-                <span className="sr-only">Next</span>
+                <span className="sr-only">Lanjut</span>
               </span>
             </button>
           </div>

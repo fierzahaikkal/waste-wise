@@ -45,26 +45,27 @@ export default function AuthButtonClient(props: Props) {
       <button
         onClick={signOut}
         className={cn(
-          `group rounded-md bg-slate-100 px-5 py-3 text-slate-600 no-underline hover:border-red-300`,
+          `group w-full rounded-md bg-slate-100 px-5 py-3 text-slate-600 no-underline hover:border-red-300`,
           {
             "bg-transparent font-light text-white": isSecondary,
           }
         )}
       >
-        <p className="font-normal transition-all group-hover:text-red-500">Logout</p>
+        <p className="font-normal transition-all group-hover:text-red-500">Keluar</p>
       </button>
     </div>
   ) : (
-    <Link
-      href="/login"
+    <button
       className={cn(
-        `group rounded-md bg-slate-100 px-5 py-3 text-slate-600 no-underline hover:border-highland-500`,
+        `group w-full rounded-md bg-slate-100 px-5 py-3 text-slate-600 no-underline hover:border-highland-500`,
         {
           "bg-transparent font-light text-white": isSecondary,
         }
       )}
     >
-      <p className="font-normal transition-all group-hover:text-highland-300">Login</p>
-    </Link>
+      <Link href="/login" className="font-normal transition-all group-hover:text-highland-300">
+        Masuk
+      </Link>
+    </button>
   );
 }
