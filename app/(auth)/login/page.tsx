@@ -1,38 +1,19 @@
 import Show from "@/components/elements/show";
 import { AUTH_TOKEN_COOKIE } from "@/utils/constant";
-import { createSupabaseServerClient } from "@/utils/supabase/server";
 import { Input } from "@nextui-org/input";
 import { cookies } from "next/headers";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { SubmitButton } from "../submit-button";
 import GoogleAuthButton from "./_google-auth";
+import { signIn } from "./_actions";
 
 export default function Login({ searchParams }: { searchParams: { message: string } }) {
-  const supabase = createSupabaseServerClient();
-  const cookueStore = cookies();
-  const token = cookueStore.get(AUTH_TOKEN_COOKIE);
+  const cookieStore = cookies();
+  const token = cookieStore.get(AUTH_TOKEN_COOKIE);
   if (token) {
     return redirect("/");
   }
-
-  const signIn = async (formData: FormData) => {
-    "use server";
-
-    const email = formData.get("email") as string;
-    const password = formData.get("password") as string;
-
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
-
-    if (error) {
-      return redirect(`/login?message=${error.message}`);
-    }
-
-    return redirect("/");
-  };
 
   return (
     <section className="bg-white">
@@ -65,8 +46,7 @@ export default function Login({ searchParams }: { searchParams: { message: strin
             </h2>
 
             <p className="mt-4 leading-relaxed text-white/90">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi nam dolorum
-              aliquam, quibusdam aperiam voluptatum.
+              Masuk atau daftarkan akun mu dan menjadi bagian dari agent of change!
             </p>
           </div>
         </section>
@@ -97,8 +77,7 @@ export default function Login({ searchParams }: { searchParams: { message: strin
               </h1>
             </div>
             <p className="mt-4 leading-relaxed text-gray-500">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi nam dolorum
-              aliquam, quibusdam aperiam voluptatum.
+              Masuk atau daftarkan akun mu dan menjadi bagian dari agent of change!
             </p>
 
             <form action={signIn} className="mt-8 grid grid-cols-6 gap-6">
@@ -139,15 +118,6 @@ export default function Login({ searchParams }: { searchParams: { message: strin
                   Masuk
                 </SubmitButton>
               </div>
-              {/* <div className="col-span-6 px-8 text-center sm:col-span-3">
-                <p className="text-sm text-gray-600">
-                  Tidak memiliki akun?
-                  <br />
-                  <Link href="/signup" className="text-sage-600 hover:text-sage-800 font-medium">
-                    Daftarkan dirimu
-                  </Link>
-                </p>
-              </div> */}
               <div className="col-span-6 flex w-full items-center justify-center px-8 text-center">
                 <p>or sign in with</p>
               </div>
