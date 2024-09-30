@@ -1,13 +1,21 @@
 "use client";
 
+import useAuth from "@/hooks/use-auth";
 import { cn } from "@/utils/cn";
 import Link from "next/link";
-import useAuth from "@/hooks/use-auth";
 import AuthButtonClient from "../auth-button/auth-button.client";
+import { useEffect, useState } from "react";
 
 const NavLinks = () => {
   const { user } = useAuth();
-  const role = user?.role;
+  const [, setIsReady] = useState(false);
+  const [userRole, setUserRole] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!user) return;
+    setIsReady(true);
+    setUserRole(user.role);
+  }, [user]);
 
   return (
     <nav>
@@ -18,7 +26,7 @@ const NavLinks = () => {
           </li>
         </Link>
         <Link
-          href={`${role === "master" || role === "admin" ? "/dashboard/waste-bank" : "/user/dashboard/waste-bank"}`}
+          href={`${userRole === "master" || userRole === "admin" ? "/dashboard/waste-bank" : "/user/dashboard/waste-bank"}`}
         >
           <li className="cursor-pointer font-normal transition-all hover:text-highland-300">
             Dashboard

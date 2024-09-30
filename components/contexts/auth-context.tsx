@@ -8,11 +8,11 @@ import { usePathname, useRouter } from "next/navigation";
 import React, { createContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
+// User type based on the ERD
 type User = {
   email: string;
   authUserID: string;
   role: string;
-  publicUserID: string;
   sid: string;
 };
 
@@ -40,6 +40,8 @@ export const AuthContextProvider = ({ children }: { children: React.ReactNode })
       try {
         const token = getCookie(AUTH_TOKEN_COOKIE);
         const sid = getCookie(GOOGLE_USER_ID);
+
+        // Bypass authentication for specific pages
         if (
           excludePages.includes(pathname) ||
           (pathname.startsWith("/blog/") && pathname.split("/").length === 3)
@@ -47,59 +49,61 @@ export const AuthContextProvider = ({ children }: { children: React.ReactNode })
           setIsAuthenticated(false);
           return;
         }
+
+        // Redirect to login if no token or sid found
         if (!token && !sid) {
           setIsAuthenticated(false);
           router.replace("/login");
           return;
         }
-        const { data, error } = await supabase.auth.getUser();
-        if (error) {
+
+        const { data: authData, error: authError } = await supabase.auth.getUser();
+        if (authError || !authData.user) {
           setIsAuthenticated(false);
           router.replace("/login");
           return;
         }
 
-        // get public userId
-        const { data: publicUserData, error: publicUserError } = await supabase
+        // Fetch user data from the "users" table, including "roles" data
+        const { data: usersData, error: usersError } = await supabase
           .from("users")
-          .select("id");
+          .select(
+            `
+            fk_user_id, 
+            fk_id_role
+          `
+          )
+          .eq("fk_user_id", authData.user.id)
+          .single(); // Ensures we get a single user record
 
-        if (publicUserError) {
+        if (usersError || !usersData) {
           setIsAuthenticated(false);
           router.replace("/login");
           return;
         }
 
-        const { data: adminData, error: adminError } = await supabase
-          .from("users")
-          .select("*")
-          .eq("fk_user_id", data.user.id)
-          .eq("fk_id_role", ADMIN_ID);
-
-        if (adminError) {
-          setIsAuthenticated(false);
-          router.replace("/login");
-          return;
-        }
-
+        // Access the role from the usersData.roles array
+        const currentRole = usersData.fk_id_role === ADMIN_ID ? "master" : "basic";
         setUser({
-          email: data.user.email as string,
-          authUserID: data.user.id,
-          role: adminData.length > 0 ? "admin" : "user",
-          publicUserID: publicUserData[0].id,
+          email: authData.user.email as string,
+          authUserID: authData.user.id,
+          role: currentRole,
           sid: sid as string,
         });
+
         setIsAuthenticated(true);
       } catch (error) {
         setUser(null);
         setIsAuthenticated(false);
+        toast.error(getErrorMessage(error));
       } finally {
         setIsLoading(false);
       }
     };
+
     checkAuth();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [pathname, user]);
 
   const onLogout = () => {
     try {
