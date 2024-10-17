@@ -37,7 +37,6 @@ const WasteForm = (props: WasteFormProps) => {
     rincian_sampah: "",
     user_id,
     jenis_sampah_id: "",
-    img_url: "",
   });
 
   const handleChange = (

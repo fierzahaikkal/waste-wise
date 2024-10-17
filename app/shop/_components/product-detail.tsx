@@ -12,6 +12,7 @@ import { useCreateOrder } from "../hooks/use-create-order";
 import { useCreatePaymentLink } from "../hooks/use-payment-link";
 import { toast } from "react-toastify";
 import { getErrorMessage } from "@/utils/get-error-msg";
+import { createSupabaseClientWithTypes } from "@/utils/supabase/client";
 
 export type ProductDetailProps = {
   id: string;
@@ -21,6 +22,8 @@ export type ProductDetailProps = {
   quantity: number;
   img_url: string;
 };
+
+const supabaseClient = createSupabaseClientWithTypes();
 
 const ProductDetail = (props: ProductDetailProps) => {
   const { desc, name: productName, price, img_url, quantity: stock, id: productId } = props;
@@ -62,7 +65,11 @@ const ProductDetail = (props: ProductDetailProps) => {
               id_order: data.data[0].id_order,
             },
             {
-              onSuccess(data) {
+              async onSuccess(data) {
+                await supabaseClient
+                  .from("products")
+                  .update({ quantity: stock - quantity })
+                  .eq("id", productId);
                 router.replace(data?.payment_url);
               },
               onError(error) {

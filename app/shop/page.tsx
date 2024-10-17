@@ -40,6 +40,7 @@ const ShopPage = async () => {
               title={product.name}
               image={product.img_url}
               price={product.price}
+              stock={product.quantity}
             />
           ))}
         </ul>

@@ -14,14 +14,19 @@ type ProductCardProps = {
   title: string;
   image: string;
   price: number;
+  stock: number;
 };
 
 export default function ProductCard(props: ProductCardProps) {
-  const { title, image, price, id } = props;
+  const { title, image, price, id, stock } = props;
   const router = useRouter();
 
   function handleClick() {
     router.push(`/shop/${id}`);
+  }
+
+  if (stock === 0) {
+    return null;
   }
 
   return (

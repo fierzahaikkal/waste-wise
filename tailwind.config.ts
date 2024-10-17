@@ -48,7 +48,6 @@ module.exports = {
       },
     },
   },
-  darkMode: "class",
   // eslint-disable-next-line no-use-before-define
   plugins: [nextui(), addVariablesForColors],
 };
