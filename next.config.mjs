@@ -24,6 +24,34 @@ const nextConfig = {
         protocol: "https",
         hostname: "images.pexels.com",
       },
+      {
+        protocol: "https",
+        hostname: "saola.com",
+      },
+      {
+        protocol: "https",
+        hostname: "kansodesigns.co",
+      },
+      {
+        protocol: "https",
+        hostname: "keikofuroshiki.com",
+      },
+      {
+        protocol: "https",
+        hostname: "images.squarespace-cdn.com",
+      },
+      {
+        protocol: "https",
+        hostname: "pelacase.com",
+      },
+      {
+        protocol: "https",
+        hostname: "toadandco.com",
+      },
+      {
+        protocol: "https",
+        hostname: "www.peacewiththewild.co.uk",
+      },
     ],
   },
 };
