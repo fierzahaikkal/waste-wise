@@ -3,7 +3,7 @@
 
 "use client";
 
-import { BoxIcon, HomeIcon, TvIcon, UserIcon } from "lucide-react";
+import { BoxIcon, HomeIcon, TvIcon, UserIcon, Coins } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useSidebarContext } from "../../_contexts/sidebar-context";
 import { SidebarItem } from "./sidebar-item";
@@ -46,6 +46,12 @@ export const SidebarWrapper = () => {
                 isActive={pathname === "/dashboard/products"}
                 title="Products"
                 icon={<BoxIcon />}
+              />
+              <SidebarItem
+                href="/dashboard/customers-balance"
+                isActive={pathname === "/dashboard/customers-balance"}
+                title="Customers Balance"
+                icon={<Coins />}
               />
             </SidebarMenu>
           </div>

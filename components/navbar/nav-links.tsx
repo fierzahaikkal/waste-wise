@@ -12,7 +12,7 @@ const NavLinks = () => {
   const [userRole, setUserRole] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!user) return;
+    if (!user || !user?.role) return;
     setIsReady(true);
     setUserRole(user.role);
   }, [user]);

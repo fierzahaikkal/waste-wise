@@ -24,6 +24,22 @@ const nextConfig = {
         protocol: "https",
         hostname: "images.pexels.com",
       },
+      {
+        protocol: "https",
+        hostname: "www.toadandco.com",
+      },
+      {
+        protocol: "https",
+        hostname: "pelacase.com",
+      },
+      {
+        protocol: "https",
+        hostname: "images.squarespace-cdn.com",
+      },
+      {
+        protocol: "https",
+        hostname: "saola.com",
+      },
     ],
   },
 };
