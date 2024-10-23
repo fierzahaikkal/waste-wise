@@ -51,6 +51,7 @@
     "react-error-boundary": "^4.0.13",
     "react-markdown": "^9.0.1",
     "react-toastify": "^10.0.5",
+    "recharts": "^2.13.0",
     "remark": "^15.0.1",
     "remark-gfm": "^4.0.0",
     "remark-html": "^16.0.1",
