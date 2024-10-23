@@ -34,6 +34,10 @@ const nextConfig = {
       },
       {
         protocol: "https",
+        hostname: "keikofuroshiki.com",
+      },
+      {
+        protocol: "https",
         hostname: "images.squarespace-cdn.com",
       },
       {
@@ -43,6 +47,14 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "kansodesigns.co",
+      },
+      {
+        protocol: "https",
+        hostname: "toadandco.com",
+      },
+      {
+        protocol: "https",
+        hostname: "www.peacewiththewild.co.uk",
       },
     ],
   },
