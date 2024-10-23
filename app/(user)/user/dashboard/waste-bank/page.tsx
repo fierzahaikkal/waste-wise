@@ -12,17 +12,31 @@ import { useSetorSampah } from "./_hooks/_mutations/use-setor-sampah";
 import { useGetStoredWaste } from "./_hooks/_queries/use-stored-waste";
 
 const WasteBankDashboard: React.FC = () => {
-  const { user } = useAuth();
+  const { user, isLoading: authPending, isAuthenticated } = useAuth();
 
-  const { data: storedWaste, isLoading } = useGetStoredWaste(user?.authUserID as string);
+  const {
+    data: storedWaste,
+    isLoading,
+    isError,
+    error,
+  } = useGetStoredWaste(user?.authUserID as string);
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const setorSampahMutation = useSetorSampah();
 
+  if (isError) {
+    return <p>{error.message}</p>;
+  }
   const handleAddWaste = () => {
     onOpen();
   };
 
-  if (!user) return null;
+  if (authPending) {
+    return <div>Loading...</div>;
+  }
+
+  if (!isAuthenticated) {
+    window.location.href = "/login";
+  }
 
   return (
     <div className="container px-8 py-10">

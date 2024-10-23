@@ -29,7 +29,7 @@ const ProductDetail = (props: ProductDetailProps) => {
   const { desc, name: productName, price, img_url, quantity: stock, id: productId } = props;
   const paymentLinkMutation = useCreatePaymentLink();
   const createOrderMutation = useCreateOrder();
-  const { user } = useAuth();
+  const { user, requireAuth } = useAuth();
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const router = useRouter();
@@ -47,9 +47,10 @@ const ProductDetail = (props: ProductDetailProps) => {
   }, [quantity, searchParams, router, pathname, price]);
 
   function handlePayment() {
+    if (!requireAuth()) return;
     createOrderMutation.mutate(
       {
-        id_order: `${productName.replaceAll(" ", "-").toLowerCase()}-${nanoid(7)}`,
+        id_order: `${productName.replaceAll(" ", "-").toLowerCase().substring(0, 20)}-${nanoid(7)}`,
         fk_id_user: user?.authUserID as string,
         fk_id_product: productId,
         amount: grossAmount,

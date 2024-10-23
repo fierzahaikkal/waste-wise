@@ -12,7 +12,7 @@ const NavLinks = () => {
   const [userRole, setUserRole] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!user) return;
+    if (!user || !user?.role) return;
     setIsReady(true);
     setUserRole(user.role);
   }, [user]);
@@ -28,7 +28,9 @@ const NavLinks = () => {
         <Link
           href={`${userRole === "master" || userRole === "admin" ? "/dashboard/waste-bank" : "/user/dashboard/waste-bank"}`}
         >
-          <li className="cursor-pointer font-normal transition-all hover:text-highland-300">
+          <li
+            className={`${user ? "block" : "hidden"} cursor-pointer font-normal transition-all hover:text-highland-300`}
+          >
             Dashboard
           </li>
         </Link>

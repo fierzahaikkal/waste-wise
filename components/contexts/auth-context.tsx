@@ -19,6 +19,7 @@ type User = {
 type AuthContextType = {
   user: User | null;
   isAuthenticated: boolean;
+  requireAuth: () => boolean; // New function to trigger auth check and redirect
   onLogout: () => void;
   isLoading: boolean;
 };
@@ -32,7 +33,16 @@ export const AuthContextProvider = ({ children }: { children: React.ReactNode })
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const router = useRouter();
   const pathname = usePathname();
-  const excludePages = ["/", "/education", "/blog/", "/team"];
+  const excludePages = ["/", "/education", "/blog/", "/team", "/shop"];
+
+  // Function to check authentication and optionally redirect
+  const requireAuth = (): boolean => {
+    if (!isAuthenticated) {
+      router.replace("/login");
+      return false;
+    }
+    return true;
+  };
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -41,26 +51,25 @@ export const AuthContextProvider = ({ children }: { children: React.ReactNode })
         const token = getCookie(AUTH_TOKEN_COOKIE);
         const sid = getCookie(GOOGLE_USER_ID);
 
-        // Bypass authentication for specific pages
+        // Bypass authentication check for specific pages
         if (
-          excludePages.includes(pathname) ||
+          (excludePages.includes(pathname) && !token) ||
           (pathname.startsWith("/blog/") && pathname.split("/").length === 3)
         ) {
           setIsAuthenticated(false);
           return;
         }
 
-        // Redirect to login if no token or sid found
+        // Check if the user has valid authentication cookies
         if (!token && !sid) {
           setIsAuthenticated(false);
-          router.replace("/login");
           return;
         }
 
+        // Get user from Supabase
         const { data: authData, error: authError } = await supabase.auth.getUser();
         if (authError || !authData.user) {
           setIsAuthenticated(false);
-          router.replace("/login");
           return;
         }
 
@@ -78,11 +87,10 @@ export const AuthContextProvider = ({ children }: { children: React.ReactNode })
 
         if (usersError || !usersData) {
           setIsAuthenticated(false);
-          router.replace("/login");
           return;
         }
 
-        // Access the role from the usersData.roles array
+        // Determine user role and set user data
         const currentRole = usersData.fk_id_role === ADMIN_ID ? "master" : "basic";
         setUser({
           email: authData.user.email as string,
@@ -122,6 +130,7 @@ export const AuthContextProvider = ({ children }: { children: React.ReactNode })
       value={{
         user,
         isAuthenticated,
+        requireAuth, // Expose requireAuth function for manual checks
         onLogout,
         isLoading,
       }}

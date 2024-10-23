@@ -26,11 +26,11 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "saola.com",
+        hostname: "www.toadandco.com",
       },
       {
         protocol: "https",
-        hostname: "kansodesigns.co",
+        hostname: "pelacase.com",
       },
       {
         protocol: "https",
@@ -42,7 +42,11 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "pelacase.com",
+        hostname: "saola.com",
+      },
+      {
+        protocol: "https",
+        hostname: "kansodesigns.co",
       },
       {
         protocol: "https",
