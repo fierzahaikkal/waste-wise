@@ -5,6 +5,7 @@ import Navbar from "@/components/navbar";
 import Education from "./_components/education-section";
 import Products from "./_components/product-section";
 import Faq from "./_components/faq";
+import WasteBarChart from "./_components/chart";
 
 export default async function Index() {
   return (
@@ -12,6 +13,7 @@ export default async function Index() {
       <Navbar />
       <div className="flex flex-col gap-y-[80px]">
         <Hero />
+        <WasteBarChart />
         <Services />
         <Products />
         <Education />
