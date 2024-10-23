@@ -40,6 +40,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "saola.com",
       },
+      {
+        protocol: "https",
+        hostname: "kansodesigns.co",
+      },
     ],
   },
 };

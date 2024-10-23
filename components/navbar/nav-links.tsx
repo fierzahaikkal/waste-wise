@@ -28,7 +28,9 @@ const NavLinks = () => {
         <Link
           href={`${userRole === "master" || userRole === "admin" ? "/dashboard/waste-bank" : "/user/dashboard/waste-bank"}`}
         >
-          <li className="cursor-pointer font-normal transition-all hover:text-highland-300">
+          <li
+            className={`${user ? "block" : "hidden"} cursor-pointer font-normal transition-all hover:text-highland-300`}
+          >
             Dashboard
           </li>
         </Link>

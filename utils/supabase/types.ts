@@ -200,32 +200,73 @@ export type Database = {
           },
         ];
       };
+      transaction: {
+        Row: {
+          amount: number | null;
+          created_at: string;
+          id: string;
+          status: string | null;
+          user_id: string | null;
+        };
+        Insert: {
+          amount?: number | null;
+          created_at?: string;
+          id?: string;
+          status?: string | null;
+          user_id?: string | null;
+        };
+        Update: {
+          amount?: number | null;
+          created_at?: string;
+          id?: string;
+          status?: string | null;
+          user_id?: string | null;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "transaction_user_id_fkey";
+            columns: ["user_id"];
+            isOneToOne: false;
+            referencedRelation: "users";
+            referencedColumns: ["fk_user_id"];
+          },
+        ];
+      };
       users: {
         Row: {
+          account_number: number | null;
           alamat: string | null;
+          bank: string | null;
           email: string | null;
           fk_id_role: string | null;
           fk_user_id: string | null;
+          fullname: string | null;
           id: string;
           phone: string | null;
           tabungan: number | null;
           usia: number | null;
         };
         Insert: {
+          account_number?: number | null;
           alamat?: string | null;
+          bank?: string | null;
           email?: string | null;
           fk_id_role?: string | null;
           fk_user_id?: string | null;
+          fullname?: string | null;
           id?: string;
           phone?: string | null;
           tabungan?: number | null;
           usia?: number | null;
         };
         Update: {
+          account_number?: number | null;
           alamat?: string | null;
+          bank?: string | null;
           email?: string | null;
           fk_id_role?: string | null;
           fk_user_id?: string | null;
+          fullname?: string | null;
           id?: string;
           phone?: string | null;
           tabungan?: number | null;
@@ -237,13 +278,6 @@ export type Database = {
             columns: ["fk_id_role"];
             isOneToOne: false;
             referencedRelation: "roles";
-            referencedColumns: ["id"];
-          },
-          {
-            foreignKeyName: "users_fk_user_id_fkey";
-            columns: ["fk_user_id"];
-            isOneToOne: true;
-            referencedRelation: "users";
             referencedColumns: ["id"];
           },
         ];
@@ -338,4 +372,19 @@ export type Enums<
   ? Database[PublicEnumNameOrOptions["schema"]]["Enums"][EnumName]
   : PublicEnumNameOrOptions extends keyof PublicSchema["Enums"]
     ? PublicSchema["Enums"][PublicEnumNameOrOptions]
+    : never;
+
+export type CompositeTypes<
+  PublicCompositeTypeNameOrOptions extends
+    | keyof PublicSchema["CompositeTypes"]
+    | { schema: keyof Database },
+  CompositeTypeName extends PublicCompositeTypeNameOrOptions extends {
+    schema: keyof Database;
+  }
+    ? keyof Database[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"]
+    : never = never,
+> = PublicCompositeTypeNameOrOptions extends { schema: keyof Database }
+  ? Database[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"][CompositeTypeName]
+  : PublicCompositeTypeNameOrOptions extends keyof PublicSchema["CompositeTypes"]
+    ? PublicSchema["CompositeTypes"][PublicCompositeTypeNameOrOptions]
     : never;

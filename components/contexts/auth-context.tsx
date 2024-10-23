@@ -53,7 +53,7 @@ export const AuthContextProvider = ({ children }: { children: React.ReactNode })
 
         // Bypass authentication check for specific pages
         if (
-          excludePages.includes(pathname) ||
+          (excludePages.includes(pathname) && !token) ||
           (pathname.startsWith("/blog/") && pathname.split("/").length === 3)
         ) {
           setIsAuthenticated(false);
@@ -111,7 +111,7 @@ export const AuthContextProvider = ({ children }: { children: React.ReactNode })
 
     checkAuth();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pathname]);
+  }, [pathname, user]);
 
   const onLogout = () => {
     try {
