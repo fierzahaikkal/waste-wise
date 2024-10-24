@@ -12,7 +12,7 @@ export default function Login({ searchParams }: { searchParams: { message: strin
   const cookieStore = cookies();
   const token = cookieStore.get(AUTH_TOKEN_COOKIE);
   if (token) {
-    return redirect("/");
+    return redirect("/form-data");
   }
 
   return (

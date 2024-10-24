@@ -14,5 +14,5 @@ export async function signIn(formData: FormData) {
     return redirect(`/login?message=${error.message}`);
   }
 
-  return redirect("/");
+  return redirect("/form-data");
 }
