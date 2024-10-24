@@ -3,7 +3,7 @@
 
 "use client";
 
-import { BotMessageSquare, HomeIcon, Recycle, Wallet } from "lucide-react";
+import { BotMessageSquare, HomeIcon, Recycle, Wallet, PiggyBank } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useSidebarContext } from "../../_contexts/sidebar-context";
 import { SidebarItem } from "./sidebar-item";
@@ -46,6 +46,12 @@ export const SidebarWrapper = () => {
                 href={"/user/dashboard/chat"}
                 title="AI Virtual Assistant"
                 icon={<BotMessageSquare />}
+              />
+              <SidebarItem
+                isActive={pathname === "/user/dashboard/withdraw"}
+                href={"/user/dashboard/withdraw"}
+                title="Withdraw"
+                icon={<PiggyBank />}
               />
             </SidebarMenu>
           </div>

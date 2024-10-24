@@ -48,9 +48,9 @@ export const SidebarWrapper = () => {
                 icon={<BoxIcon />}
               />
               <SidebarItem
-                href="/dashboard/customers-balance"
-                isActive={pathname === "/dashboard/customers-balance"}
-                title="Customers Balance"
+                href="/dashboard/customers-withdrawal"
+                isActive={pathname === "/dashboard/customers-withdrawal"}
+                title="Customers Withdrawal"
                 icon={<Coins />}
               />
             </SidebarMenu>

@@ -6,6 +6,7 @@ import React from "react";
 import { ToastContainer } from "react-toastify";
 import "./globals.css";
 import { HydrationOverlay } from "@builder.io/react-hydration-overlay";
+import ProgressBar from "./_components/nprogress";
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -36,6 +37,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <UIProvider>
                 <main>
                   {children}
+                  <ProgressBar />
                   <ToastContainer />
                 </main>
               </UIProvider>
