@@ -56,6 +56,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "www.peacewiththewild.co.uk",
       },
+      {
+        protocol: "https",
+        hostname: "dev-to-uploads.s3.amazonaws.com",
+      },
     ],
   },
 };
