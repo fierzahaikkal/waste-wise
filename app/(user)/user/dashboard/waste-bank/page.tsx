@@ -52,7 +52,7 @@ const WasteBankDashboard: React.FC = () => {
             <Plus color="white" size={20} />
           </span>
         </Button>
-        <div className="mt-14 px-4">
+        <div className="mt-14 hidden px-4">
           Your current balance:&nbsp;
           {formatRupiah(storedWaste?.reduce((acc, cur) => acc + cur.harga_setor, 0) ?? 0)}
         </div>
