@@ -1,7 +1,7 @@
 "use client";
 
 import { Table, TableBody, TableCell, TableColumn, TableHeader, TableRow } from "@nextui-org/table";
-import { Trash2 } from "lucide-react";
+import { SquarePen, Trash2 } from "lucide-react";
 import { useUsersWaste } from "./_hooks/use-users-waste";
 import { createSupabaseClientWithTypes } from "@/utils/supabase/client";
 import { toast } from "react-toastify";
@@ -14,21 +14,118 @@ import {
   ModalContent,
   ModalFooter,
   ModalHeader,
+  Select,
+  SelectItem,
 } from "@nextui-org/react";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
+import { useGetJenisSampah } from "./_hooks/use-jenis-sampah";
+import { Database } from "@/utils/supabase/types";
+
+type Setor = Database["public"]["Tables"]["setor"]["Row"];
+
+type WasteForm = {
+  id: string;
+  id_jenis_sampah: string;
+  quantity: number;
+  rincian_sampah: string;
+};
 
 export default function AdminWasteManagement() {
   const { data, isLoading } = useUsersWaste();
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const {
+    isOpen: isDeleteModalOpen,
+    onOpen: onDeleteModalOpen,
+    onOpenChange: onDeleteModalOpenChange,
+  } = useDisclosure();
+  const {
+    isOpen: isUpdateModalOpen,
+    onOpen: onUpdateModalOpen,
+    onClose: onUpdateModalClose,
+    onOpenChange: onUpdateModalOpenChange,
+  } = useDisclosure();
+
   const supabase = createSupabaseClientWithTypes();
   const [idToDelete, setIdToDelete] = useState<string>("");
+  const [currentWaste, setCurrentWaste] = useState<WasteForm>({
+    id: "",
+    id_jenis_sampah: "",
+    quantity: 0,
+    rincian_sampah: "",
+  });
+
+  const {
+    data: jenisSampahData,
+    isLoading: isLoadingJenisSampah,
+    error: jenisSampahError,
+  } = useGetJenisSampah();
+
+  const selectOptionsObj = useMemo(() => {
+    return jenisSampahData?.map(jenis => ({
+      label: jenis.nama,
+      value: jenis.id,
+    }));
+  }, [jenisSampahData]);
+
+  const openUpdateModal = (record: Setor) => {
+    setCurrentWaste({
+      id: record.id,
+      id_jenis_sampah: record.id_jenis_sampah,
+      quantity: record.quantity ?? 0,
+      rincian_sampah: record.rincian_sampah ?? "",
+    });
+    onUpdateModalOpen();
+  };
+
+  const handleEdit = async () => {
+    try {
+      if (!currentWaste.id) return;
+
+      const { error } = await supabase
+        .from("setor")
+        .update({
+          id_jenis_sampah: currentWaste.id_jenis_sampah,
+          quantity: currentWaste.quantity,
+          rincian_sampah: currentWaste.rincian_sampah,
+        })
+        .eq("id", currentWaste.id);
+
+      if (error) {
+        toast.error(`Error updating record: ${getErrorMessage(error)}`);
+        return;
+      }
+
+      toast.success("Record updated successfully");
+      onUpdateModalClose();
+      window.location.reload();
+    } catch (error) {
+      toast.error(getErrorMessage(error));
+    }
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setCurrentWaste(prev => ({
+      ...prev,
+      [name]: name === "quantity" ? parseFloat(value) || 0 : value,
+    }));
+  };
+
+  const handleSelectChange = (value: string) => {
+    setCurrentWaste(prev => ({
+      ...prev,
+      id_jenis_sampah: value,
+    }));
+  };
 
   const handleDelete = async (id: string) => {
     try {
       const { error } = await supabase.from("setor").delete().eq("id", id);
-      if (error) toast.error(getErrorMessage(error));
-      window.location.reload();
+      if (error) {
+        toast.error(getErrorMessage(error));
+        return;
+      }
       toast.success("Waste deleted successfully");
+      window.location.reload();
     } catch (error) {
       toast.error(getErrorMessage(error));
     }
@@ -95,11 +192,17 @@ export default function AdminWasteManagement() {
                     <button
                       onClick={() => {
                         setIdToDelete(record.id);
-                        onOpen();
+                        onDeleteModalOpen();
                       }}
                       className="text-red-600 hover:text-red-900"
                     >
                       <Trash2 className="h-5 w-5" />
+                    </button>
+                    <button
+                      onClick={() => openUpdateModal(record)}
+                      className="ml-2 text-slate-600 hover:text-slate-900"
+                    >
+                      <SquarePen className="h-5 w-5" />
                     </button>
                   </TableCell>
                 </TableRow>
@@ -108,7 +211,14 @@ export default function AdminWasteManagement() {
           </Table>
         </div>
       </div>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+
+      {/* Delete Confirmation Modal */}
+      <Modal
+        isOpen={isDeleteModalOpen}
+        onOpenChange={onDeleteModalOpenChange}
+        isDismissable={true}
+        hideCloseButton={false}
+      >
         <ModalContent>
           {onClose => (
             <>
@@ -128,6 +238,82 @@ export default function AdminWasteManagement() {
                   }}
                 >
                   Delete
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
+
+      {/* Update Modal */}
+      <Modal
+        isOpen={isUpdateModalOpen}
+        onOpenChange={onUpdateModalOpenChange}
+        size="lg"
+        isDismissable={true}
+        hideCloseButton={false}
+      >
+        <ModalContent>
+          {onClose => (
+            <>
+              <ModalHeader className="flex flex-col gap-1">Update Waste Record</ModalHeader>
+              <ModalBody className="gap-4">
+                <div>
+                  <label htmlFor="id_jenis_sampah">Jenis Sampah</label>
+                  <Select
+                    label="Jenis Sampah"
+                    isLoading={isLoadingJenisSampah}
+                    errorMessage={jenisSampahError?.message}
+                    selectedKeys={
+                      currentWaste.id_jenis_sampah ? [currentWaste.id_jenis_sampah] : []
+                    }
+                    onChange={e => handleSelectChange(e.target.value)}
+                    className="w-full"
+                  >
+                    {(selectOptionsObj ?? []).map(opt => (
+                      <SelectItem key={opt.value} value={opt.value}>
+                        {opt.label}
+                      </SelectItem>
+                    ))}
+                  </Select>
+                </div>
+                <div>
+                  <label htmlFor="rincian_sampah">Rincian Sampah</label>
+                  <input
+                    name="rincian_sampah"
+                    value={currentWaste.rincian_sampah || ""}
+                    onChange={handleInputChange}
+                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-highland-500 focus:outline-none focus:ring-highland-500 sm:text-sm"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="quantity">Berat (kg)</label>
+                  <input
+                    name="quantity"
+                    type="number"
+                    value={currentWaste.quantity || ""}
+                    onChange={handleInputChange}
+                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-highland-500 focus:outline-none focus:ring-highland-500 sm:text-sm"
+                  />
+                </div>
+
+                <p className="text-sm text-gray-500">
+                  Note: Harga Setor will be automatically calculated based on the selected Jenis
+                  Sampah and quantity.
+                </p>
+              </ModalBody>
+              <ModalFooter>
+                <Button color="default" variant="light" onPress={onClose}>
+                  Cancel
+                </Button>
+                <Button
+                  color="primary"
+                  onPress={() => {
+                    handleEdit();
+                    onClose();
+                  }}
+                >
+                  Update
                 </Button>
               </ModalFooter>
             </>

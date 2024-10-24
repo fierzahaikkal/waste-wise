@@ -17,3 +17,35 @@ export async function getUsersWaste() {
 
   return setorData;
 }
+
+export async function getJenisSampah() {
+  try {
+    const { data, error } = await supabase.from("jenis_sampah").select("*");
+
+    if (error) {
+      throw new Error(getErrorMessage(error));
+    }
+
+    return data;
+  } catch (error) {
+    throw new Error(getErrorMessage(error));
+  }
+}
+
+export async function getUserBank(userId: string) {
+  if (!userId) return null;
+  try {
+    const { data, error } = await supabase
+      .from("users")
+      .select("tabungan")
+      .eq("fk_user_id", userId);
+
+    if (error) {
+      throw new Error(getErrorMessage(error));
+    }
+
+    return data[0].tabungan;
+  } catch (error) {
+    throw new Error(getErrorMessage(error));
+  }
+}

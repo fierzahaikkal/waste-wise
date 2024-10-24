@@ -13,6 +13,7 @@ import {
   Legend,
 } from "recharts";
 import { Spinner } from "@nextui-org/react";
+import SectionContainer from "@/components/section-container";
 
 const supabase = createSupabaseClientWithTypes();
 
@@ -113,69 +114,73 @@ const WasteBarChart = () => {
   if (wasteData.length === 0) {
     return (
       <div className="flex h-96 items-center justify-center p-6">
-        <p className="text-default-500">No waste data available</p>
+        <p className="text-default-500">Tidak ada data sampah yang tersedia</p>
       </div>
     );
   }
 
   return (
-    <div className="w-full p-6">
-      <div className="mb-6 flex flex-col gap-2">
-        <h2 className="text-xl font-bold text-default-900">Stored Waste by Type</h2>
-        <p className="text-small text-default-500">Total waste quantities aggregated by type</p>
-      </div>
+    <SectionContainer>
+      <div className="w-full">
+        <div className="mb-6 flex flex-col gap-2">
+          <h2 className="text-2xl font-bold text-default-900">Jenis sampah terbanyak</h2>
+          <p className="text-small text-default-500">
+            Jumlah jenis sampah yang paling sering di setor
+          </p>
+        </div>
 
-      <div className="h-96 w-full">
-        <ResponsiveContainer width="100%" height="100%">
-          <BarChart
-            data={wasteData}
-            margin={{
-              top: 20,
-              right: 30,
-              left: 20,
-              bottom: 5,
-            }}
-          >
-            <CartesianGrid strokeDasharray="3 3" stroke={chartColors.grid} />
-            <XAxis
-              dataKey="name"
-              tick={{ fill: chartColors.text }}
-              tickLine={{ stroke: chartColors.text }}
-              angle={-45}
-              textAnchor="end"
-              height={60}
-            />
-            <YAxis
-              tick={{ fill: chartColors.text }}
-              tickLine={{ stroke: chartColors.text }}
-              label={{
-                value: "Quantity",
-                angle: -90,
-                position: "insideLeft",
-                fill: chartColors.text,
+        <div className="h-96 w-full">
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart
+              data={wasteData}
+              margin={{
+                top: 20,
+                right: 30,
+                left: 20,
+                bottom: 5,
               }}
-            />
-            <Tooltip
-              contentStyle={{
-                backgroundColor: chartColors.tooltip.background,
-                border: `1px solid ${chartColors.tooltip.border}`,
-                borderRadius: "8px",
-                boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
-              }}
-              formatter={value => [`${value}`, "Quantity"]}
-              labelStyle={{ color: chartColors.text }}
-            />
-            <Legend />
-            <Bar
-              dataKey="quantity"
-              fill={chartColors.primary}
-              name="Total Quantity"
-              radius={[4, 4, 0, 0]}
-            />
-          </BarChart>
-        </ResponsiveContainer>
+            >
+              <CartesianGrid strokeDasharray="3 3" stroke={chartColors.grid} />
+              <XAxis
+                dataKey="name"
+                tick={{ fill: chartColors.text }}
+                tickLine={{ stroke: chartColors.text }}
+                angle={-45}
+                textAnchor="end"
+                height={60}
+              />
+              <YAxis
+                tick={{ fill: chartColors.text }}
+                tickLine={{ stroke: chartColors.text }}
+                label={{
+                  value: "Kuantitas",
+                  angle: -90,
+                  position: "insideLeft",
+                  fill: chartColors.text,
+                }}
+              />
+              <Tooltip
+                contentStyle={{
+                  backgroundColor: chartColors.tooltip.background,
+                  border: `1px solid ${chartColors.tooltip.border}`,
+                  borderRadius: "8px",
+                  boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
+                }}
+                formatter={value => [`${value}`, "Kuantitas"]}
+                labelStyle={{ color: chartColors.text }}
+              />
+              <Legend />
+              <Bar
+                dataKey="quantity"
+                fill={chartColors.primary}
+                name="Banyak Jumlah"
+                radius={[4, 4, 0, 0]}
+              />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
       </div>
-    </div>
+    </SectionContainer>
   );
 };
 

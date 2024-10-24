@@ -4,7 +4,7 @@ import { BackgroundBeams } from "./bg-beams";
 export default function Hero() {
   return (
     <section className="bg-white py-20">
-      <div className="container mx-auto px-6 py-16 text-center">
+      <div className="container mx-auto px-6 text-center">
         <div className="mx-auto max-w-lg">
           <div className="relative">
             <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-green-300 to-yellow-300 opacity-70 blur-2xl" />
