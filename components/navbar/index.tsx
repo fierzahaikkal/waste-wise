@@ -10,6 +10,7 @@ import NavbarMobile from "./navbar-mobile";
 import { useEffect, useState } from "react";
 import { createSupabaseClient as supabaseClient } from "@/utils/supabase/client";
 import { User } from "@supabase/supabase-js";
+import ModalUserForm from "@/app/_components/modal-user-form";
 
 export default function Navbar() {
   const { isOpen, onClose, onOpen } = useDisclosure(false);
@@ -64,9 +65,11 @@ export default function Navbar() {
 
   return (
     <ClientOnly>
+      <ModalUserForm user={user} />
       <Show when={mobile} fallback={<NavbarDesktop />}>
         <div className="relative z-[110] flex w-full flex-row items-center justify-between p-8">
           <p className="text-3xl font-bold">Waste Wise</p>
+          <ModalUserForm user={user} />
           <button className="rounded-lg bg-slate-100 p-2" onClick={onOpen}>
             <Menu className="text-slate-600" />
           </button>
