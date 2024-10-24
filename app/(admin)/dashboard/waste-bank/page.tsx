@@ -216,7 +216,7 @@ export default function AdminWasteManagement() {
       <Modal
         isOpen={isDeleteModalOpen}
         onOpenChange={onDeleteModalOpenChange}
-        isDismissable={true}
+        isDismissable
         hideCloseButton={false}
       >
         <ModalContent>
@@ -250,7 +250,7 @@ export default function AdminWasteManagement() {
         isOpen={isUpdateModalOpen}
         onOpenChange={onUpdateModalOpenChange}
         size="lg"
-        isDismissable={true}
+        isDismissable
         hideCloseButton={false}
       >
         <ModalContent>
