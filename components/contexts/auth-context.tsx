@@ -111,7 +111,7 @@ export const AuthContextProvider = ({ children }: { children: React.ReactNode })
 
     checkAuth();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pathname, user]);
+  }, [pathname]);
 
   const onLogout = () => {
     try {
