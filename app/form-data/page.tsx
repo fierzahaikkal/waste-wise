@@ -64,7 +64,7 @@ export default function UserDataForm() {
           .from("users")
           .select("fullname, alamat, account_number, bank")
           .eq("fk_user_id", user.id)
-          .single();
+          .single<UserForm>();
 
         if (dbError && dbError.code !== "PGRST116") {
           // Ignore "not found" error
@@ -73,12 +73,14 @@ export default function UserDataForm() {
 
         // If user details exist, populate the form
         if (userDetails) {
-          setFormData({
-            fullname: userDetails.fullname || "",
-            alamat: userDetails.alamat || "",
-            account_number: userDetails.account_number || 0,
-            bank: (userDetails.bank as BankType) || null,
-          });
+          if (
+            userDetails.account_number &&
+            userDetails.alamat &&
+            userDetails.bank &&
+            userDetails.fullname !== null
+          ) {
+            router.push("/");
+          }
         }
 
         setIsInitialized(true);
